@@ -1,19 +1,18 @@
 package thisis.realization;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class GameDevelop {
 
     static int[] dx = {-1, 0, 1, 0}; //북, 동, 남, 서
-    static int[] dy = {0, -1, 0, 1};
+    static int[] dy = {0, -1, 0, 1}; //북, 동, 남, 서
 
-    static int playerDir;
+    static int nowDir; //현재 방향
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int mapRow = Integer.parseInt(st.nextToken()); //맵 크기
         int mapCol = Integer.parseInt(st.nextToken());
@@ -24,7 +23,7 @@ public class GameDevelop {
         st = new StringTokenizer(br.readLine());
         int curX = Integer.parseInt(st.nextToken()); //현재 x좌표
         int curY = Integer.parseInt(st.nextToken()); //현재 y좌표
-        int nowDir = Integer.parseInt(st.nextToken()); //현재 방향
+        nowDir = Integer.parseInt(st.nextToken()); //현재 방향
 
         visit[curX][curY] = true;
 
@@ -41,30 +40,32 @@ public class GameDevelop {
         while (true) {
             turnAction(); //자 돌아보자
 
-            if ((map[curX + dx[playerDir]][curY + dy[playerDir]] == 0) && (!visit[curX + dx[playerDir]][curY + dy[playerDir]])) { //바다가 아니고 방문한 적이 없다면
-                visit[curX + dx[playerDir]][curY + dy[playerDir]] = true; //방문
+            if ((map[curX + dx[nowDir]][curY + dy[nowDir]] == 0) && (!visit[curX + dx[nowDir]][curY + dy[nowDir]])) { //바다가 아니고 방문한 적이 없다면
+                visit[curX + dx[nowDir]][curY + dy[nowDir]] = true; //방문
                 visitcnt++;
 
-                curX += dx[playerDir]; //위치 최신화
-                curY += dy[playerDir];
+                curX += dx[nowDir]; //위치 최신화
+                curY += dy[nowDir];
                 cnt = 0;
             } else cnt++;
 
             if (cnt == 4) { //다 돌아보니
-                if (map[curX - dx[playerDir]][curY - dy[playerDir]] == 1) { //갈 곳이 없으면
+                if (map[curX - dx[nowDir]][curY - dy[nowDir]] == 1) { //갈 곳이 없으면
                     break; //끝
                 } else { //아니면
                     cnt = 0;
-                    curX -= dx[playerDir];
-                    curY -= dy[playerDir]; //문워크
+                    curX -= dx[nowDir];
+                    curY -= dy[nowDir]; //문워크
                 }
             }
         }
-        System.out.println(visitcnt);
+        bw.write(visitcnt);
+        bw.close();
+        br.close();
     }
 
     private static void turnAction() {
-        playerDir -= 1; //왼쪽으로 돌아보아요
-        if (playerDir < 0) playerDir = 3;
+        nowDir -= 1; //왼쪽으로 돌아보아요
+        if (nowDir < 0) nowDir = 3;
     }
 }

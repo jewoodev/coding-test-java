@@ -1,10 +1,10 @@
-package doit.data.structure.arrayandlist;
+package doit.data.structure.intervalsum;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class IntervalSum {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException { //p44 내 풀이
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();

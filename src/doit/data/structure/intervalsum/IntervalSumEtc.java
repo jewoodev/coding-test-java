@@ -1,13 +1,12 @@
-package doit.data.structure.arrayandlist;
+package doit.data.structure.intervalsum;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class IntervalSum2 {
-    public static void main(String[] args) throws IOException {
+public class IntervalSumEtc {
+    public static void main(String[] args) throws IOException { //p42
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine());
         int suNo = Integer.parseInt(st.nextToken());

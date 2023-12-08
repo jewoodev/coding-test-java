@@ -1,11 +1,10 @@
 package doit.data.structure.arrayandlist;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class CalAvg2 {
-    public static void main(String[] args) throws IOException {
+public class CalAvgEtc {
+    public static void main(String[] args) throws IOException { //p38
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 

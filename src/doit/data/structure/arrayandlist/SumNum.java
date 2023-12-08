@@ -3,7 +3,7 @@ package doit.data.structure.arrayandlist;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class SumNum {
+public class SumNum { //p35
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
