@@ -34,7 +34,7 @@ public class ImportantSubject { //p359
         String name;
         int lang, math, eng;
 
-        public Student(String name, int lang, int math, int eng) { //여기서 과목 순서를 잘못 넣어서 답이 안나왔다;;
+        public Student(String name, int lang, int eng, int math) { //여기서 과목 순서를 잘못 넣어서 답이 안나왔다;;
             this.name = name;
             this.lang = lang;
             this.math = math;
