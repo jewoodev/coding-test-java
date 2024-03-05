@@ -21,7 +21,7 @@ public class GetCnt { //p367
         int left = leftIdx(0, n-1);
         int right = rightIdx(0, n-1);
 
-        int result = right - left == 0 ? -1 : right - left;
+        int result = (right - left == 0) ? -1 : (right - left);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         bw.write(String.valueOf(result));
         bw.close();
