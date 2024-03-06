@@ -2,7 +2,7 @@ package doit.sort;
 
 import java.io.*;
 
-public class SortNum2 {
+public class SortNum2 { //병합 정렬/P128 수 정렬하기2
     private static int[] a, tmp;
 
     public static void main(String[] args) throws IOException {
@@ -30,9 +30,9 @@ public class SortNum2 {
         for (int i = s; i <= e; i++) {
             tmp[i] = a[i];
         }
-        int k = s;
-        int idx1 = s;
-        int idx2 = m + 1;
+        int k = s; //정렬 연산의 결과를 반영할 포인터
+        int idx1 = s; //첫 구간을 가리키는 포인터
+        int idx2 = m + 1; //다음 구간을 가리키는 포인터
         while (idx1 <= m && idx2 <= e) { //두 그룹을 병합하는 로직
             //양쪽 그룹의 index가 가리키는 값을 비교해 더 작은 수를 선택해 배열에 저장하고,
             //선택된 데이터의 index 값을 오른쪽으로 한 칸 이동하기
