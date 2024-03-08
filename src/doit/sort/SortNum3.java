@@ -1,10 +1,6 @@
 package doit.sort;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class SortNum3 { //기수 정렬/P139 수 정렬하기 3
     private static int[] a;

@@ -1,11 +1,7 @@
 package doit.sort;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class CalculateTimeToWithdrawAtm { //삽입 정렬/P115 ATM 인출 시간 계산하기
     public static void main(String[] args) throws IOException {

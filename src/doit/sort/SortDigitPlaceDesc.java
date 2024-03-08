@@ -1,10 +1,6 @@
 package doit.sort;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class SortDigitPlaceDesc { //선택 정렬/P109 내림차순으로 자릿수 정렬하기
     public static void main(String[] args) {
