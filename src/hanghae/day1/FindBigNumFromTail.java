@@ -2,7 +2,8 @@ package hanghae.day1;
 
 import java.util.Stack;
 
-public class Problem4 { //뒤에 있는 큰 수 찾기 https://school.programmers.co.kr/learn/courses/30/lessons/154539
+//뒤에 있는 큰 수 찾기 https://school.programmers.co.kr/learn/courses/30/lessons/154539
+public class FindBigNumFromTail {
     public static void main(String[] args) {
         int[] i = {2, 3, 3, 5};
         for (int ii : solution(i)) {

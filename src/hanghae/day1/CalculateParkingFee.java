@@ -7,7 +7,8 @@ import java.util.Map;
 
 import static java.util.Collections.sort;
 
-public class Problem2 { //주차 요금 계산 https://school.programmers.co.kr/learn/courses/30/lessons/92341
+//주차 요금 계산 https://school.programmers.co.kr/learn/courses/30/lessons/92341
+public class CalculateParkingFee {
     public int[] solution(int[] fees, String[] records) {
         int[] answer = {};
 

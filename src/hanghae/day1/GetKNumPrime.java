@@ -1,6 +1,7 @@
 package hanghae.day1;
 
-public class Problem1 { //k 진수에서 소수 개수 구하기 https://school.programmers.co.kr/learn/courses/30/lessons/92335
+//k 진수에서 소수 개수 구하기 https://school.programmers.co.kr/learn/courses/30/lessons/92335
+public class GetKNumPrime {
     public boolean isprime(long n){
         if(n <= 1) return false;
         else if(n == 2) return true;

@@ -3,7 +3,8 @@ package hanghae.day1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem3 { //모음사전 https://school.programmers.co.kr/learn/courses/30/lessons/84512
+//모음사전 https://school.programmers.co.kr/learn/courses/30/lessons/84512
+public class BundleDict {
     private static String[] a = {"A", "E", "I", "O", "U"};
     private static List<String> all;
     public int solution(String word) {
