@@ -3,10 +3,6 @@ package hanghae.day4;
 import java.util.*;
 
 //혼자 놀기의 달인
-/*
-문제 설명을 이해하기가 어려울 때 설명을 그대로 따라가면서 구현하다보면 불필요한 구현이 늘어나면서
-점점 다음 논리의 구현이 어려워진다. 불필요한 구현을 찾아내는 작업에 신경을 더 써보자.
- */
 public class MasterPlayingAlone {
     static boolean[] visited;
     static int depth;
