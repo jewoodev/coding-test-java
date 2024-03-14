@@ -4,9 +4,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //리코쳇 로봇
-//나중에 보니 이동할 때 벽을 만나기 전까지 안 멈추고 가야되는데 이렇게 경로에 조건을 달려면 DFS로 구현해야 한다.
-//그냥 풀이를 보자. 시간을 너무 많이 썼다.
-//아니었다!
 public class RicoChatRobot {
 
     static boolean[][] visited;
