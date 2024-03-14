@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 //광물 캐기
-//한번 선택한 곡괭이는 사용할 수 없을 때까지 사용한다는 조건을 잊고 구현하지 않았다.
-//고쳐서 풀 수 있을 것 같지만 더 간단 명료하게 걷어낸 풀이가 있을 거라 생각해 다른 풀이로 공부한다.
 public class MiningMineral {
     static class Mineral {
         private int diamond;
