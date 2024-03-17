@@ -5,7 +5,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 //디펜스 게임
-//도통 어떤 걸 잘못 구현한 건지 모르겠다
 public class DefenceGame {
     public static int solution(int n, int k, int[] enemy) {
         int answer = enemy.length;
