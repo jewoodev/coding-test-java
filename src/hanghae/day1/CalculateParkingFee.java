@@ -25,7 +25,7 @@ public class CalculateParkingFee {
             String[] infos = records[i].split(" ");
             String carNum = infos[1]; //차 번호
 
-            if(map.containsKey(carNum)){
+            if (map.containsKey(carNum)) {
                 String[] inTime = map.remove(carNum).split(":");
                 String[] outTime = infos[0].split(":");
 
