@@ -1,4 +1,4 @@
-package doit.graph;
+package doit.graph.cannot;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

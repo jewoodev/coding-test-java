@@ -1,11 +1,11 @@
-package doit.graph.unionfind;
+package doit.graph.fail.unionfind;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
 public class RepresentSet { /* P282 문제 50, 백준 1717번. 집합 표현하기 */
-    /* 해설 본 후 고친 풀이 */
 
+    /* 풀었는데 13퍼센트인가 오답 터짐, 그래서 해설 확인 */
     private static int[] g;
 
     public static void main(String[] args) throws IOException {
@@ -26,7 +26,7 @@ public class RepresentSet { /* P282 문제 50, 백준 1717번. 집합 표현하�
             if (o == 0) {
                 union(a, b);
             } else {
-                if (checkSame(a, b)) bw.write("YES\n");
+                if (g[a] == g[b]) bw.write("YES\n");
                 else bw.write("NO\n");
             }
         }
@@ -35,22 +35,8 @@ public class RepresentSet { /* P282 문제 50, 백준 1717번. 집합 표현하�
     }
 
     private static void union(int a, int b) {
-        a = find(a);
-        b = find(b);
-        if (b > a) g[b] = g[a];
+        if (g[a] < g[b]) g[b] = g[a];
         else g[a] = g[b];
-    }
-
-    private static int find(int i) {
-        if (g[i] == i) return i;
-        else return g[i] = find(g[i]);
-    }
-
-    private static boolean checkSame(int a, int b) {
-        a = find(a);
-        b = find(b);
-        if (a == b) return true;
-        else return false;
     }
 }
 
