@@ -44,7 +44,7 @@ public class BubbleSortProgram1 { //정렬/버블 소트 프로그램1/P104
  * 풀이법 설명을 보고 구현해보려 해도 정렬 전, 후의 인덱스의 이동량의 최대를 어떻게 계산할지 갈피를 못잡았던 문제
  */
 //public class BubbleSortProgram1 { //정렬/버블 소트 프로그램1/P104
-//    public static void main(String[] args) throws IOException {
+//    public static void Main(String[] args) throws IOException {
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        int N = Integer.parseInt(br.readLine());
 //        int[] a = new int[N];

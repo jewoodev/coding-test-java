@@ -30,7 +30,7 @@ public class GetNotSquare { /* P227 문제 40. 제곱이 아닌 수 찾기 */
     }
 }
     /* 범위가 저런데 long으로 풀어야 하나? 메모리 초과되었다.
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long min = sc.nextLong();
         long max = sc.nextLong();

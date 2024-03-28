@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 public class MakeCocktail {
     /* 어떻게 푸는 건지 모르겠다. 비율 한 쪽이 항상 1로 주어지면 간단한데 그런 조건이 없어서 방법을 못찾겠다 */
     /*
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         int[] ratio = new int[n];

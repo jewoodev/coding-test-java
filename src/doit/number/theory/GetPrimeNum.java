@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 
 public class GetPrimeNum { /* P217 문제 37 소수 구하기 */
     /* 여기서 배열 앞에서 부터 소수인 수의 배수를 삭제하는 것을 반복해야 하는데, 소수인지 아닌지 판단하는 것부터 시간복잡도를 고려해서 구현하려니까 좋은 방법이 떠오르지 않는다.
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int m = Integer.parseInt(st.nextToken()); //m은 "M 이상"의 M 값

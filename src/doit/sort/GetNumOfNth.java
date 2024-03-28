@@ -96,7 +96,7 @@ public class GetNumOfNth { //퀵 정렬/P121 K번째 수 구하기
     private static int n;
     private static int[] a;
 
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         //n은 주어지는 수의 개수

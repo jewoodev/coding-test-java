@@ -2,7 +2,7 @@ package doit.graph.topologysort.cannot;
 
 //줄 세우기 p 300 백준 2252
 //public class LineUp {
-//    public static void main(String[] args) throws IOException {
+//    public static void Main(String[] args) throws IOException {
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        StringTokenizer st = new StringTokenizer(br.readLine());
 //        int n = Integer.parseInt(st.nextToken()); //학생 번호의 최대값

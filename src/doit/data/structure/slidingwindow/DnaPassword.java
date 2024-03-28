@@ -93,7 +93,7 @@ public class DnaPassword { //슬라이딩 윈도우/P67 DNA 비밀번호
     /* 구현할 엄두도 내지 못한 문제
     * 손으로 풀어보기 2번까지 보고 꽤 긴 시간 디버깅해서 답은 구했지만 시간 복잡도를 만족시키지 못했다.*/
 /*
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken()); //n은 DNA 문자열의 길이

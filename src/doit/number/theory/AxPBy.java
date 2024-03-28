@@ -53,7 +53,7 @@ public class AxPBy { /* P250 문제 45 */
     /*
     private static ArrayList<Result> result;
 
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
         int b = sc.nextInt();

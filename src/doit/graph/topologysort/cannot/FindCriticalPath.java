@@ -2,7 +2,7 @@ package doit.graph.topologysort.cannot;
 
 //임계 경로 구하기 p309 backjoon 1948
 //public class FindCriticalPath {
-//    public static void main(String[] args) throws IOException {
+//    public static void Main(String[] args) throws IOException {
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        int N = Integer.parseInt(br.readLine());
 //        int M = Integer.parseInt(br.readLine());

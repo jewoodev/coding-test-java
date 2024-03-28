@@ -29,7 +29,7 @@ public class SortDigitPlaceDesc { //선택 정렬/P109 내림차순으로 자릿
     /**
      * 문자열을 인덱싱해서 int 배열로 만들어 sort() 한 후에 출력하려고 했는데, 문자열 인덱싱에서 막힘.
      */
-//    public static void main(String[] args) {
+//    public static void Main(String[] args) {
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        StringTokenizer st = new StringTokenizer("");
 //        int[] N = new int[];

@@ -25,7 +25,7 @@ public class ImplementEulerTotientMethod { /* P233 문제 41. 오일러 피 함�
     }
 }
 /* 책 풀이 , 오답
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long n = sc.nextLong();
         long result = n;
@@ -42,7 +42,7 @@ public class ImplementEulerTotientMethod { /* P233 문제 41. 오일러 피 함�
  */
 
     /* 메모리 초과로 오답
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long n = sc.nextLong();
         if (n == 1) {
@@ -65,7 +65,7 @@ public class ImplementEulerTotientMethod { /* P233 문제 41. 오일러 피 함�
 }*/
 
     /* 오일러 피 함수 원리를 이해 못했다. GCD(n, k) 이게 n과 k의 최대공약수를 표현한 것이라고 한다.
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long n = sc.nextInt();
         ArrayList<Long> a = new ArrayList<>();

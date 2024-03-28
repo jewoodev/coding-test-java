@@ -50,7 +50,7 @@ public class GetMinPrimeAndPalindrome { /* P224 문제 39. 소수 & 팰린드롬
 
 
     /* 어디서 틀린 건지 모르겠다
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] a = new int[1_000_001];

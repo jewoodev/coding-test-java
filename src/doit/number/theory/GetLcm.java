@@ -39,7 +39,7 @@ public class GetLcm { //P237 문제 42. 최소공배수 구하기
 
     /* 책의 풀이 */
     /*
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st;

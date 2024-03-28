@@ -66,7 +66,7 @@ public class BubbleSortProgram2 {
     }
 
 /* 실패한 풀이
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
         mData[] a = new mData[n];

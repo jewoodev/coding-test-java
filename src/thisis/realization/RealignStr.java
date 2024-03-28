@@ -20,5 +20,5 @@ public class RealignStr { //p322
         for (char c : strVal) System.out.print(c);
         System.out.print(intVal);
 
-    } //main
+    } //Main
 }

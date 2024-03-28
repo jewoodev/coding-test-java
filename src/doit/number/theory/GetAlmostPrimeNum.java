@@ -49,7 +49,7 @@ public class GetAlmostPrimeNum { /* P220 문제 38. 거의 소수 구하기 */
 
     /* 책의 풀이, 이것도 오답이였다. */
     /*
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long min = sc.nextLong();
         long max = sc.nextLong();
@@ -84,7 +84,7 @@ public class GetAlmostPrimeNum { /* P220 문제 38. 거의 소수 구하기 */
     /* 어디가 틀린 건지 모르겠다. */
     /* 책 풀이로 이해 시도 후 -> 2가 2 제곱의 결과만 while문 조건에서 확인하고 넘어가버리는 연산을 하고 있는 문제 발견 */
     /*
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
         int b = sc.nextInt();
@@ -116,7 +116,7 @@ public class GetAlmostPrimeNum { /* P220 문제 38. 거의 소수 구하기 */
 
     /* 놓치고 있는 게 뭔지 몰라서 못 풀었다. */
 /*
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
         int b = sc.nextInt();

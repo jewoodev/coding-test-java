@@ -28,7 +28,7 @@ public class GetGcd { /* P240 문제 43. 최대공약수 구하기 */
 
     /* 틀린 풀이 */
     /*
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long a = sc.nextLong();
         long b = sc.nextLong();

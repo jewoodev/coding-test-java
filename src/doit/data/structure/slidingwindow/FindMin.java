@@ -44,7 +44,7 @@ public class FindMin { //슬라이딩 윈도우/P74 최솟값 찾기
 
     /* 예시는 맞는데 제출하면 오답 */
 /*
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 

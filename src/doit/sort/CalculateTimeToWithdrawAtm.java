@@ -45,7 +45,7 @@ public class CalculateTimeToWithdrawAtm { //삽입 정렬/P115 ATM 인출 시간
     /**
      * 삽입 정렬로 풀 방법이 떠오르지 않아 빠르게 포기한 것이 아쉬운 문제, 기본 제공되는 sort()로 풀기는 풀었다.
      */
-//    public static void main(String[] args) throws IOException {
+//    public static void Main(String[] args) throws IOException {
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        int n = Integer.parseInt(br.readLine()); //n은 인출할 사람의 수
 //        StringTokenizer st = new StringTokenizer(br.readLine());

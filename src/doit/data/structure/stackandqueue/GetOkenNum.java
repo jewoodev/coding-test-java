@@ -39,7 +39,7 @@ public class GetOkenNum { //스택과 큐/P86/문제12. 오큰수 구하기
 
     /* 아이디어를 생각해내지 못하고 해매다가 책의 핵심아이디어까지 보고 다시 시도 */
 /*
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine()); //n은 수열의 원소 갯수
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -52,7 +52,7 @@ public class GetOkenNum { //스택과 큐/P86/문제12. 오큰수 구하기
 
     /* 이번 시도도 실패 */
 /*
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine()); //n은 수열의 원소 갯수
         Stack<Element> okenSeq = new Stack<>();

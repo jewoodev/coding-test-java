@@ -40,7 +40,7 @@ public class AbsHeap { /* P94/문제14.절댓값힙구현하기 */
         return Math.abs(this.val) - Math.abs(o.val);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine()); //n은 연산의 개수
         PriorityQueue<Main> q = new PriorityQueue<>();

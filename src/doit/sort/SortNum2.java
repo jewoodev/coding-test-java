@@ -60,7 +60,7 @@ public class SortNum2 { //병합 정렬/P128 수 정렬하기2
 
     /* 병합 정렬 구현을 어떻게 해야할지 모르겠어서 못 푼 문제, 근데 이전에 푼 풀이가 아래에 있다. 병합 정렬한거 같진 않다. */
 /*
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         int[] num = new int[n];

@@ -48,7 +48,7 @@ public class SortNum3 { //기수 정렬/P139 수 정렬하기 3
 
 
     /* 실패한 풀이, 못 풀었다.
-    public static void main(String[] args) throws IOException {
+    public static void Main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         int[] a = new int[n];
