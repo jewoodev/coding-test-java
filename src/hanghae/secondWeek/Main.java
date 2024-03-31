@@ -1,41 +1,34 @@
 package hanghae.secondWeek;
 
+import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.next();
-        int[] alpha = new int[26];
-        for (int i = 0; i < input.length(); i++) {
-            int idx = input.charAt(i) - 'A';
-            alpha[idx]++;
-        }
-        int odd = 0;
-        for (int i = 0; i < alpha.length; i++)
-            if (alpha[i] % 2 != 0) odd++;
+        String str = "ABCDEFG";
+        int n = str.length();
+        permute(str, 0, n-1);
+    }
 
-        StringBuilder answer = new StringBuilder();
-        StringBuilder sb = new StringBuilder();
-        if (odd > 1) {
-            System.out.print("I'm Sorry Hansoo");
-            return;
-        }
-        else {
-            for (int i = 0; i < alpha.length; i++) {
-                for (int j = 0; j < alpha[i] / 2; j++) {
-                    sb.append((char) (i+65));
-                }
+    public static void permute(String str, int l, int r) {
+        if (l == r) {
+            System.out.println(str);
+        } else {
+            for (int i = l; i <= r; i++) {
+                str = swap(str, l, i);
+                permute(str, l + 1, r);
+                str = swap(str, l, i);
             }
-            answer.append(sb.toString());
-            String end = sb.reverse().toString();
-            sb = new StringBuilder();
-            for (int i = 0; i < alpha.length; i++) {
-                if (alpha[i] % 2 == 1)
-                    sb.append((char) (i+65));
-            }
-            answer.append(sb.append(end));
         }
-        System.out.print(answer);
+    }
+
+    public static String swap(String a, int i, int j) { // abcd, 0, 3, => dbca
+        char temp;
+        char[] charArray = a.toCharArray();
+        temp = charArray[i] ;
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
     }
 }
