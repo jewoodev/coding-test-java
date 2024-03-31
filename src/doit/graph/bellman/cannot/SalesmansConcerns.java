@@ -1,4 +1,4 @@
-package doit.graph.bellman;
+package doit.graph.bellman.cannot;
 
 import java.io.*;
 import java.util.*;
@@ -51,14 +51,13 @@ public class SalesmansConcerns {
         }
 
         if (isCycle) {
-            for (int i = s + 1; i <= n; i++) {
+            for (int i = s + 1; i <= n - 1; i++) {
                 if (result[i] == Long.MIN_VALUE) {
                     System.out.println("gg");
                     break;
                 }
-                if (i == n)
-                    System.out.println("Gee");
             }
+            System.out.println("Gee");
         } else {
             System.out.println(result[e]);
         }
