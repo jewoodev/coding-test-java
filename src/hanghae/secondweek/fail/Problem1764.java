@@ -1,4 +1,4 @@
-package hanghae.secondWeek.fail;
+package hanghae.secondweek.fail;
 
 import java.io.*;
 import java.util.*;

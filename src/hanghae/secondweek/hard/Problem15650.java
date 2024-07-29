@@ -1,4 +1,4 @@
-package hanghae.secondWeek;
+package hanghae.secondweek;
 
 import java.io.*;
 import java.util.*;

@@ -1,4 +1,4 @@
-package hanghae.secondWeek.wrong;
+package hanghae.secondweek.wrong;
 
 import java.io.BufferedReader;
 import java.io.IOException;
