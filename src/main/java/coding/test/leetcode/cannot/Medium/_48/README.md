@@ -1,5 +1,7 @@
 # 48. Rotate Image
 
+문제 링크: [링크](https://leetcode.com/problems/rotate-image/description/)
+
 N * N 의 정사각형 형태의 행렬을 90도 회전하는 방법을 궁리하는게 주 포인트이다. 
 
 왼오 꼭지점에서 오른아래 꼭지점을 잇는 대각선을 기준으로 좌우 반전을 시킨 후,  
