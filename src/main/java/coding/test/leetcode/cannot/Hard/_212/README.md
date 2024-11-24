@@ -32,3 +32,9 @@ class SolutionTest {
 
 dfs 한 사이클을 돌고 checked를 풀어주지 않아서 문제였다. 이를 수정함으로써 풀렸다.
 하지만 `Time Limit Exceeded` 로 터졌다. 
+
+---
+
+words를 iteration 돌면서 word의 첫 문자를 board에서 찾은 후에 백트래킹하는 것으로 풀면 트라이를 사용하는 것에 비해  
+첫 문자를 찾는 데에 드는 비용이 커지게 된다. 그래서 타임이 너무 많이 떴던 것이다.
+

@@ -1,12 +1,10 @@
-package coding.test.leetcode.cannot.Medium._212;
-
-import org.junit.jupiter.api.Test;
-
-
-import java.util.*;
+package coding.test.leetcode.cannot.Hard._212;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
 
 class SolutionTest {
 

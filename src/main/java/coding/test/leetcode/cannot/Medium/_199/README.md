@@ -18,7 +18,7 @@
  *     }
  * }
  */
-class coding.test.leetcode.leetcode.Solution {
+class Solution {
     List<Integer> answer = new ArrayList<>();
     
     private void rightSide(TreeNode node, int depth) {

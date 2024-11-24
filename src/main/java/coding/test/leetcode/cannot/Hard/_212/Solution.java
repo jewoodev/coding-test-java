@@ -1,9 +1,6 @@
-package coding.test.leetcode.cannot.Medium._212;
+package coding.test.leetcode.cannot.Hard._212;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 class Solution {
 
