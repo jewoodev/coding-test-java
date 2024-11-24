@@ -19,12 +19,12 @@ class Solution {
         m = board.length;
         n = board[0].length;
         this.board = board;
+        checked = new boolean[m][n];
 
         for (String word : words) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
                     if (board[i][j] == word.charAt(0)) {
-                        checked = new boolean[m][n];
                         dfs(i, j, word, 0);
                     }
                 }
@@ -47,5 +47,6 @@ class Solution {
         dfs(r + 1, c, word, depth);
         dfs(r, c - 1, word, depth);
         dfs(r, c + 1, word, depth);
+        checked[r][c] = false;
     }
 }

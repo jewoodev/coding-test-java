@@ -29,3 +29,6 @@ class SolutionTest {
     }
 }
 ```
+
+dfs 한 사이클을 돌고 checked를 풀어주지 않아서 문제였다. 이를 수정함으로써 풀렸다.
+하지만 `Time Limit Exceeded` 로 터졌다. 
