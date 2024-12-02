@@ -1,4 +1,4 @@
-package coding.test.leetcode.cannot.Medium._341;
+package coding.test.leetcode.cannot.medium._341;
 
 /**
  * // This is the interface that allows for creating nested lists.
@@ -17,34 +17,34 @@ package coding.test.leetcode.cannot.Medium._341;
  *     public List<NestedInteger> getList();
  * }
  */
-public class NestedIterator implements Iterator<Integer> {
-
-    private Queue<Integer> dq = new ArrayDeque<>();
-
-    public NestedIterator(List<NestedInteger> nestedList) {
-        this.addInteger(nestedList);
-    }
-
-    private void addInteger(List<NestedInteger> nestedList) {
-        for (NestedInteger ne: nestedList) {
-            if (ne.isInteger()) {
-                dq.offer(ne.getInteger());
-            } else {
-                this.addInteger(ne.getList());
-            }
-        }
-    }
-
-    @Override
-    public Integer next() {
-        return dq.poll();
-    }
-
-    @Override
-    public boolean hasNext() {
-        return !dq.isEmpty();
-    }
-}
+//public class NestedIterator implements Iterator<Integer> {
+//
+//    private Queue<Integer> dq = new ArrayDeque<>();
+//
+//    public NestedIterator(List<NestedInteger> nestedList) {
+//        this.addInteger(nestedList);
+//    }
+//
+//    private void addInteger(List<NestedInteger> nestedList) {
+//        for (NestedInteger ne: nestedList) {
+//            if (ne.isInteger()) {
+//                dq.offer(ne.getInteger());
+//            } else {
+//                this.addInteger(ne.getList());
+//            }
+//        }
+//    }
+//
+//    @Override
+//    public Integer next() {
+//        return dq.poll();
+//    }
+//
+//    @Override
+//    public boolean hasNext() {
+//        return !dq.isEmpty();
+//    }
+//}
 
 /**
  * Your NestedIterator object will be instantiated and called as such:

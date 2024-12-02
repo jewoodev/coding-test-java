@@ -1,4 +1,4 @@
-package coding.test.leetcode.cannot.Hard._212;
+package coding.test.leetcode.cannot.hard._212;
 
 import java.util.*;
 

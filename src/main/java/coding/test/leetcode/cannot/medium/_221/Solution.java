@@ -1,4 +1,4 @@
-package coding.test.leetcode.cannot.Medium._221;
+package coding.test.leetcode.cannot.medium._221;
 
 class Solution {
     public int maximalSquare(char[][] matrix) {

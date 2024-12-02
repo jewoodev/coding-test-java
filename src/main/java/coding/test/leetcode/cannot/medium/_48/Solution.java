@@ -1,4 +1,4 @@
-package coding.test.leetcode.cannot.Medium._48;
+package coding.test.leetcode.cannot.medium._48;
 
 public class Solution {
     public void rotate(int[][] matrix) {

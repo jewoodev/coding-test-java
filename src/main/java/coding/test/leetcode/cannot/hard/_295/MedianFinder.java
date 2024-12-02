@@ -1,4 +1,4 @@
-package coding.test.leetcode.cannot.Hard._295;
+package coding.test.leetcode.cannot.hard._295;
 
 import java.util.PriorityQueue;
 import java.util.Queue;
