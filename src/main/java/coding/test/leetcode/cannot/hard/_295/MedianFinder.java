@@ -1,35 +1,38 @@
 package coding.test.leetcode.cannot.hard._295;
 
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 class MedianFinder {
 
-    private Queue<Integer> q;
+    private int index = 0;
+    private PriorityQueue<Integer> maxHeap;
+    private PriorityQueue<Integer> minHeap;
 
     public MedianFinder() {
-        this.q = new PriorityQueue<>();
+        maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        minHeap = new PriorityQueue<>();
     }
 
     public void addNum(int num) {
-        this.q.offer(num);
+        index++;
+        if (index % 2 == 0) {
+            minHeap.offer(num);
+            maxHeap.offer(minHeap.poll());
+            minHeap.offer(maxHeap.poll());
+        } else {
+            maxHeap.offer(num);
+            minHeap.offer(maxHeap.poll());
+            maxHeap.offer(minHeap.poll());
+        }
     }
 
     public double findMedian() {
-        int qSize = this.q.size();
-        if (qSize % 2 == 0) {
-            int sum = 0;
-            for (Integer i : q) {
-                sum += i;
-            }
-            return (double) sum / qSize;
+        if (index % 2 != 0) {
+            return maxHeap.peek();
         } else {
-            int middleIndex = (int) Math.ceil((double) qSize / 2) - 1;
-            Queue<Integer> copyQ = new PriorityQueue<>(q);
-            for (int i = 0; i < middleIndex; i++) {
-                copyQ.poll();
-            }
-            return copyQ.poll();
+            int fromMax = maxHeap.peek();
+            int fromMin = minHeap.peek();
+            return (fromMin + fromMax) / 2.0;
         }
     }
 }

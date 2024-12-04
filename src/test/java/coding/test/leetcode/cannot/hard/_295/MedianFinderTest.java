@@ -6,15 +6,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MedianFinderTest {
 
-//    @Test
-//    void testAll() {
-//        assertAll(
-//                () -> test()
-//        );
-//    }
-//
-//    private void test() {
-//        MedianFinder mf = new MedianFinder();
+    @Test
+    void testAll() {
+        assertAll(
+                () -> test()
+        );
+    }
+
+    private void test() {
+        MedianFinder mf = new MedianFinder();
+        mf.addNum(1);
+        mf.addNum(2);
+        assertEquals(1.5, mf.findMedian());
+        mf.addNum(3);
+        assertEquals(2.0, mf.findMedian());
+
+
+
 //        mf.addNum(6);
 //        assertEquals(6.0, mf.findMedian());
 //        mf.addNum(10);
@@ -29,5 +37,5 @@ class MedianFinderTest {
 //        assertEquals(5.5, mf.findMedian());
 //        mf.addNum(6);
 //        assertEquals(6.0, mf.findMedian());
-//    }
+    }
 }
