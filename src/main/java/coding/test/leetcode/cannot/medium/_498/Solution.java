@@ -1,25 +1,42 @@
 package coding.test.leetcode.cannot.medium._498;
 
 class Solution {
-    int m, n;
-    int i, j;
-    int[] arr;
+    int row, col;
+    int[][] moveVertical = new int[][]{{-1, 1}, {1, -1}};
     public int[] findDiagonalOrder(int[][] mat) {
-        m = mat.length - 1;
-        n = mat[0].length - 1;
-        arr = new int[(m + 1) * (n + 1)];
-        i = j = 0;
-        while (i != m || j != n) {
-            leftDiagonal(i, j);
-            rightDiagonal(i, j);
+        int m = mat.length;
+        int n = mat[0].length;
+        int[] arr = new int[m * n];
+        row = col = 0;
+        int idx = 0;
+        int direction = 0;
+
+        while (idx < m * n) {
+            arr[idx++] = mat[row][col];
+
+            row += moveVertical[direction][0];
+            col += moveVertical[direction][1];
+
+            if (row < 0 || row >= m || col < 0 || col >= n) {
+                if (direction == 0) {
+                    if (col >= n) {
+                        row += 2;
+                        col -= 1;
+                    } else if (row < 0) {
+                        row = 0;
+                    }
+                    direction = 1;
+                } else {
+                    if (row >= m) {
+                        col += 2;
+                        row -= 1;
+                    } else if (col < 0) {
+                        col = 0;
+                    }
+                    direction = 0;
+                }
+            }
         }
         return arr;
-    }
-
-
-    private void leftDiagonal(int i, int j) {
-
-    }
-    private void rightDiagonal(int i, int j) {
     }
 }
