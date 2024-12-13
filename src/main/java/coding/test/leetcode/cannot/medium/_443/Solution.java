@@ -1,43 +1,31 @@
 package coding.test.leetcode.cannot.medium._443;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
     public int compress(char[] chars) {
-        char cur = chars[0];
-        int cnt = 1;
-        List<Character> list = new ArrayList<>();
-        list.add(chars[0]);
-        for (int i = 1; i < chars.length; i++) {
-            if (cur == chars[i]) {
-                cnt++;
-            } else if (cnt == 1) {
-                list.add(chars[i]);
-            } else {
-                String fromCnt = String.valueOf(cnt);
-                for (int j = 0; j < fromCnt.length(); j++) list.add(fromCnt.charAt(j));
-                cnt = 1;
-                list.add(chars[i]);
-                cur = chars[i];
+        int write = 0;  // 압축된 문자를 기록할 위치
+        int read = 0;   // 현재 문자를 읽는 위치
+
+        while (read < chars.length) {
+            char currentChar = chars[read];
+            int count = 0;
+
+            // 현재 문자 그룹의 길이를 계산
+            while (read < chars.length && chars[read] == currentChar) {
+                read++;
+                count++;
+            }
+
+            // 현재 문자를 기록
+            chars[write++] = currentChar;
+
+            // 길이가 2 이상인 경우 길이를 기록
+            if (count > 1) {
+                for (char c : Integer.toString(count).toCharArray()) {
+                    chars[write++] = c;
+                }
             }
         }
 
-        if (cnt != 1) {
-            String fromCnt = String.valueOf(cnt);
-            for (int j = 0; j < fromCnt.length(); j++) list.add(fromCnt.charAt(j));
-        }
-        chars = listToCharArray(list);
-        return list.size();
-    }
-
-    private char[] listToCharArray(List<Character> charList) {
-        char[] charArray = new char[charList.size()];
-
-        for (int i = 0; i < charList.size(); i++) {
-            charArray[i] = charList.get(i);
-        }
-
-        return charArray;
+        return write;  // 압축된 배열의 길이 반환
     }
 }

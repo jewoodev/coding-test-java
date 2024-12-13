@@ -1,4 +1,4 @@
-package coding.test.leetcode.medium._443;
+package coding.test.leetcode.cannot.medium._443;
 
 import coding.test.leetcode.cannot.medium._443.Solution;
 import org.junit.jupiter.api.Test;
