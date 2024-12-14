@@ -1,4 +1,4 @@
-package coding.test.leetcode.easy._2215;
+package coding.test.leetcode.cannot.easy._2215;
 
 import java.util.ArrayList;
 import java.util.List;
