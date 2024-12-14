@@ -15,3 +15,7 @@ ArrayList의 생성자 중에 위의 것도 있음을 기억해두자.
 | Modifier and Type  | Method                     | Description                                                                                 |
 |--------------------|----------------------------|---------------------------------------------------------------------------------------------|
 |         boolean           | removeAll(Collection<?> c) | Removes from this list all of its elements that are contained in the specified collection.  |
+
+---
+
+답으로 고유한 요소를 갖는 리스트를 반환해야 하는데 이전 풀이로는 중복되는 요소가 생겨났었다. 그게 오답 판정을 받는 이유였다.
