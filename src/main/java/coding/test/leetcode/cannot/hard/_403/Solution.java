@@ -7,24 +7,25 @@ import java.util.Set;
 
 class Solution {
     public boolean canCross(int[] stones) {
-        Map<Integer, Set<Integer>> map = new HashMap<>();
-
-        // 각 돌 위치를 map에 저장하고 초기 상태를 설정
+        Map<Integer, Set<Integer>> steps = new HashMap<>();
         for (int stone : stones) {
-            map.put(stone, new HashSet<>());
+            steps.put(stone, new HashSet<>());
         }
-        map.get(0).add(1); // 첫 점프는 1로 시작
+        steps.get(0).add(0);
 
-        for (int stone : stones) {
-            for (int jump : map.get(stone)) {
-                int nextStone = stone + jump;
-                if (nextStone == stones[stones.length - 1]) {
-                    return true; // 마지막 돌에 도달하면 true 반환
-                }
-                if (map.containsKey(nextStone)) {
-                    if (jump - 1 > 0) map.get(nextStone).add(jump - 1);
-                    map.get(nextStone).add(jump);
-                    map.get(nextStone).add(jump + 1);
+        int target = stones[stones.length - 1];
+        for (int i = 0; i < stones.length; i++) {
+            int stone = stones[i];
+
+            Set<Integer> stepSet = steps.get(stone);
+            for (Integer step : stepSet) {
+                for (int k = step - 1; k <= step + 1; k++) {
+                    if (steps.containsKey(stone + k)) {
+                        if (stone + k == target) return true;
+                        if (stone + k != stone) {
+                            steps.get(stone + k).add(k);
+                        }
+                    }
                 }
             }
         }
@@ -32,3 +33,4 @@ class Solution {
         return false;
     }
 }
+
