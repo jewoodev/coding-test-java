@@ -7,7 +7,7 @@ import java.util.List;
 
 class Solution {
     public int[] asteroidCollision(int[] asteroids) {
-        Deque<Integer> stack = new ArrayDeque<>();
+        Deque<Integer> stack = new ArrayDeque<>(); // 스택은 synchronized가 걸려있으니 쓰지 않아야 한다(?)
 
         for (int asteroid : asteroids) {
             boolean exploded = false;
