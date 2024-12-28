@@ -8,29 +8,23 @@ import java.util.Set;
 class Solution {
     public static int countBinarySubstrings(String s) {
         Deque<String> dq = new ArrayDeque<>();
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = i+1; j < s.length()+1; j++) {
-                String substring = s.substring(i, j);
-                char[] chars = substring.toCharArray();
-                char first = chars[0];
-                int count = 0;
-                boolean flag = false;
-                boolean secondFlag = true;
-                for (char c : chars) {
-                    if (c == first) {
-                        count++;
-                        if (flag == true) {
-                            secondFlag = false;
-                            break;
-                        }
+        for (int left = 0; left < s.length(); left++) {
+            int right = left + 1;
+            char first = s.charAt(left);
+            int cnt = 1;
+            boolean flag = false;
+            while (right < s.length()) {
+                if (s.charAt(right) == first) {
+                    cnt++;
+                    if (flag == true) {
+                        break;
                     }
-                    else {
-                        count--;
-                        flag = true;
-                    }
+                } else {
+                    cnt--;
+                    flag = true;
                 }
-                if (secondFlag == false) break;
-                if (count == 0 && flag == true) dq.add(substring);
+                if (cnt == 0) dq.offer(s.substring(left, right + 1));
+                right++;
             }
         }
         return dq.size();
