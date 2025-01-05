@@ -2,6 +2,10 @@ package coding.test.leetcode.easy._1710;
 
 import java.util.Arrays;
 
+/**
+ * Bucket 정렬을 사용하면 더 효율적으로 풀 수 있는 케이스.
+ */
+
 class Solution {
     public int maximumUnits(int[][] boxTypes, int truckSize) {
         Arrays.sort(boxTypes, (a, b) -> Integer.compare(b[1], a[1]));
