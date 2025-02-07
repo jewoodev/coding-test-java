@@ -1,4 +1,4 @@
-package coding.test.with_java.ch8;
+package coding.test.datastructure.with_java.ch8;
 
 import coding.test.datastructure.with_java.ch8.RadixSort;
 import org.junit.jupiter.api.Test;

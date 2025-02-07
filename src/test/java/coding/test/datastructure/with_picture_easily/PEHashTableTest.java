@@ -1,4 +1,4 @@
-package coding.test.with_picture_easily;
+package coding.test.datastructure.with_picture_easily;
 
 import coding.test.datastructure.with_picture_easily.PEHashTable;
 import org.junit.jupiter.api.Test;
