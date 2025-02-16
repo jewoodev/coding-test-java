@@ -4,13 +4,13 @@ public class Node<E> {
     public E element;
     public Node<E> next;
 
-    public Node(E newItem) {
-        element = newItem;
+    public Node(E element) {
+        this.element = element;
         next = null;
     }
 
-    public Node(E newItem, Node<E> node) {
-        element = newItem;
+    public Node(E element, Node<E> node) {
+        this.element = element;
         next = node;
     }
 }

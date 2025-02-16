@@ -9,7 +9,11 @@ class LinkedQueueTest {
     void test() {
         LinkedQueue<String> q = new LinkedQueue<>();
         q.enqueue("x");
-        System.out.println("Dequeue result : " + q.dequeue());
-        System.out.println("Is queue empty? : " + q.isEmpty());
+        q.enqueue("y");
+        q.enqueue("z");
+
+        assertEquals("x", q.dequeue());
+        assertEquals("y", q.dequeue());
+        assertEquals("z", q.dequeue());
     }
 }

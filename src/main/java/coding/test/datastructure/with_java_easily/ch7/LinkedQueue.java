@@ -2,25 +2,21 @@ package coding.test.datastructure.with_java_easily.ch7;
 
 import coding.test.datastructure.with_java_easily.ch5.Node;
 
-public class LinkedQueue<E> implements QueueInterface<E> {
+public class LinkedQueue<E> implements QueueInterface<E> { // 연습문제 2
+    private Node<E> head;
     private Node<E> tail;
     private final E ERROR = null;
 
     public LinkedQueue() {
-        tail = null;
+        head = new Node<>(null);
+        tail = head;
     }
 
     @Override
     public void enqueue(E element) {
         Node<E> newNode = new Node<>(element);
-        if (isEmpty()) {
-            newNode.next = newNode;
-            tail = newNode;
-        } else {
-            newNode.next = tail.next;
-            tail.next = newNode;
-            tail = newNode;
-        }
+        tail.next = newNode;
+        tail = newNode;
     }
 
     @Override
@@ -28,11 +24,10 @@ public class LinkedQueue<E> implements QueueInterface<E> {
         if (isEmpty()) {
             return ERROR;
         } else {
-            Node<E> front = tail.next;
+            Node<E> front = head.next;
+            head.next = front.next;
             if (front == tail)
-                tail = null;
-            else
-                tail.next = front.next;
+                tail = head;
             return front.element;
         }
     }
@@ -40,16 +35,17 @@ public class LinkedQueue<E> implements QueueInterface<E> {
     @Override
     public E front() {
         if (isEmpty()) return ERROR;
-        else return tail.next.element;
+        else return head.next.element;
     }
 
     @Override
     public boolean isEmpty() {
-        return (tail == null);
+        return (head.next == null);
     }
 
     @Override
     public void dequeueAll() {
-        tail = null;
+        head.next = null;
+        tail = head;
     }
 }
