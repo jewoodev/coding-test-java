@@ -1,4 +1,4 @@
-package coding.test.programmers._3;
+package coding.test.programmers._3._60059;
 
 class Solution {
     public boolean solution(int[][] key, int[][] lock) {
