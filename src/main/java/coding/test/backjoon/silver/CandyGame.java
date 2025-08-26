@@ -7,7 +7,7 @@ public class CandyGame { // https://www.acmicpc.net/problem/3085
         int n = a.length;
         int ans = 1;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = startRow; i <= endRow; i++) {
             int cnt = 1;
 
             for (int j = 1; j < n; j++) {
@@ -19,12 +19,14 @@ public class CandyGame { // https://www.acmicpc.net/problem/3085
 
                 if (ans < cnt) ans = cnt;
             }
+        }
 
-            cnt = 1;
+        for (int i = startCol; i <= endCol; i++) {
+            int cnt = 1;
 
             for (int j = 1; j < n; j++) {
                 if (a[j][i] == a[j - 1][i]) {
-                    cnt += 1;
+                    cnt++;
                 } else {
                     cnt = 1;
                 }
@@ -47,6 +49,9 @@ public class CandyGame { // https://www.acmicpc.net/problem/3085
         }
 
         int ans = 0;
+
+        ans= check(arr, 0, N - 1, 0, N - 1);
+
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (j + 1 < N && arr[i][j] != arr[i][j + 1]) {
