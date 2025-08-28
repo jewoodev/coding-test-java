@@ -51,7 +51,7 @@ class Solution {
         }
     }
 
-    public List<Integer> numIslands2(int m, int n, int[][] positions) {
+    public int[] numIslands2(int m, int n, int[][] positions) {
         List<Integer> result = new ArrayList<>();
         UnionFind uf = new UnionFind(m * n);
         int[][] grid = new int[m][n];
@@ -80,6 +80,6 @@ class Solution {
             result.add(uf.getCount());
         }
 
-        return result;
+        return result.stream().mapToInt(i -> i).toArray();
     }
 }
