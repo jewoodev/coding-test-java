@@ -4,33 +4,37 @@ import java.io.*;
 import java.util.*;
 
 public class NAndM1 { // https://www.acmicpc.net/problem/15649, 브루트 포스 & 백트래킹
-    static int[] a = new int[9];
-    static boolean[] c = new boolean[9];
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static int[] a;
+    static boolean[] b;
 
     static void go(int idx, int N, int M) throws IOException {
         if (idx == M) {
-            for (int i = 0; i < 8; i++) {
-                if (a[i] != 0) bw.write(a[i] + " ");
+            for (int i: a) {
+                bw.write(i + " ");
             }
             bw.write("\n");
             return;
         }
 
         for (int i = 1; i <= N; i++) {
-            if (c[i]) continue;
-            c[i] = true;
+            if (b[i]) continue;
             a[idx] = i;
+            b[i] = true;
             go(idx + 1, N, M);
-            c[i] = false;
+            b[i] = false;
         }
     }
 
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = sc.nextInt();
-        int M = sc.nextInt();
+        int[] read = Arrays.stream(br.readLine().split(" "))
+                .mapToInt(Integer::parseInt).toArray();
+        int N = read[0];
+        int M = read[1];
+        a = new int[M];
+        b = new boolean[N + 1];
 
         go(0, N, M);
 
