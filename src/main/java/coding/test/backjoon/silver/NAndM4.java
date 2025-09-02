@@ -3,23 +3,28 @@ package coding.test.backjoon.silver;
 import java.io.*;
 import java.util.Arrays;
 
-public class NAndM2 { // https://www.acmicpc.net/problem/15650, 브루트 포스
-    static int[] a = new int[8];
+public class NAndM4 { // https://www.acmicpc.net/problem/15652, 브루트 포스
+    static int[] cnt = new int[9];
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     static void go(int selected, int idx, int N, int M) throws IOException {
         if (selected == M) {
-            for (int i = 0; i < 8; i++) {
-                if(a[i] != 0) bw.write(a[i] + " ");
+            for (int i = 1; i <= N; i++) {
+                for (int j = 1; j <= cnt[i]; j++) {
+                    bw.write(i + " ");
+                }
             }
             bw.write("\n");
             return;
         }
 
         if (idx > N) return;
-        a[selected] = idx;
-        go(selected + 1,idx + 1, N, M);
-        a[selected] = 0;
+
+        for (int i = M - selected; i >= 1; i--) {
+            cnt[idx] = i;
+            go(selected + i, idx + 1, N, M);
+        }
+        cnt[idx] = 0;
         go(selected, idx + 1, N, M);
     }
 

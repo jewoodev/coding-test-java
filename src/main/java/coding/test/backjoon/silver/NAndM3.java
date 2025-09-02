@@ -3,7 +3,7 @@ package coding.test.backjoon.silver;
 import java.io.*;
 import java.util.*;
 
-public class NAndM3 { // https://www.acmicpc.net/problem/15651, 브루트 포스 & 백트래킹
+public class NAndM3 { // https://www.acmicpc.net/problem/15651, 브루트 포스
     static int[] a = new int[7];
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
