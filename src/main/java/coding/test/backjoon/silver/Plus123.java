@@ -8,11 +8,10 @@ public class Plus123 { // https://www.acmicpc.net/problem/9095, 브루트 포스
 
         int[] d = new int[11];
         d[0] = 1;
-        for (int i = 1; i <= 10; i++) {
-            for (int j = 1; j <= 3; j++) {
-                if (i - j >= 0) d[i] += d[i - j];
-            }
-        }
+        for (int i = 1; i <= 10; i++)
+            for (int j = 1; j <= 3; j++)
+                if (i - j >= 0)
+                    d[i] += d[i - j];
 
         int T = Integer.parseInt(br.readLine());
         for (int i = 0; i < T; i++) {

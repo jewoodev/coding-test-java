@@ -13,9 +13,8 @@ public class DFSAndBFS { // https://www.acmicpc.net/problem/1260, 그래프 & BF
 
         visited[cur] = true;
         sb.append(cur).append(" ");
-        for (int i : g[cur]) {
+        for (int i : g[cur])
             dfs(i);
-        }
     }
 
     private static void bfs(int v) {
@@ -43,9 +42,8 @@ public class DFSAndBFS { // https://www.acmicpc.net/problem/1260, 그래프 & BF
                 .mapToInt(Integer::parseInt).toArray();
         int n = read[0], m = read[1], v = read[2];
         g = new ArrayList[n+1];
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++)
             g[i] = new ArrayList<>();
-        }
         for (int i = 0; i < m; i++) {
             read = Arrays.stream(br.readLine().split(" "))
                     .mapToInt(Integer::parseInt).toArray();
@@ -55,9 +53,8 @@ public class DFSAndBFS { // https://www.acmicpc.net/problem/1260, 그래프 & BF
             g[y].add(x);
         }
 
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++)
             Collections.sort(g[i]);
-        }
 
         // dfs
         visited = new boolean[n+1];
