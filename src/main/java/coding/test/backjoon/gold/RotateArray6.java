@@ -3,7 +3,7 @@ package coding.test.backjoon.gold;
 import java.io.*;
 import java.util.*;
 
-public class RotateArray6 { // https://www.acmicpc.net/problem/16935, 구현
+public class RotateArray6 { // https://www.acmicpc.net/problem/20327, 구현
 
     private static int[][] oneToFour(int[][] arr, int n, int k, int len) {
         for (int sy = 0; sy < n; sy += len) {
@@ -50,13 +50,13 @@ public class RotateArray6 { // https://www.acmicpc.net/problem/16935, 구현
         int subCnt = n / subSize;
         for (int i = 0; i < subCnt; i++) {
             for (int j = 0; j < subCnt; j++) {
-                int y1 = i * subSize;
-                int x1 = j * subSize;
-                int y2 = (subCnt - 1 - i) * subSize;
-                int x2 = j * subSize;
+                int fromY = i * subSize;
+                int fromX = j * subSize;
+                int toY = (subCnt - 1 - i) * subSize;
+                int toX = j * subSize;
                 for (int y = 0; y < subSize; y++) {
                     for (int x = 0; x < subSize; x++) {
-                        ans[y1 + y][x1 + x] = arr[y2 + y][x2 + x];
+                        ans[fromY + y][fromX + x] = arr[toY + y][toX + x];
                     }
                 }
             }
@@ -81,13 +81,13 @@ public class RotateArray6 { // https://www.acmicpc.net/problem/16935, 구현
         int subCnt = n / subSize;
         for (int i = 0; i < subCnt; i++) {
             for (int j = 0; j < subCnt; j++) {
-                int y1 = i * subSize;
-                int x1 = j * subSize;
-                int y2 = i * subSize;
-                int x2 = (subCnt - 1 - j) * subSize;
+                int fromY = i * subSize;
+                int fromX = j * subSize;
+                int toY = i * subSize;
+                int toX = (subCnt - 1 - j) * subSize;
                 for (int y = 0; y < subSize; y++) {
                     for (int x = 0; x < subSize; x++) {
-                        ans[y1 + y][x1 + x] = arr[y2 + y][x2 + x];
+                        ans[fromY + y][fromX + x] = arr[toY + y][toX + x];
                     }
                 }
             }
