@@ -1,11 +1,9 @@
 package coding.test.backjoon.gold;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.io.*;
+import java.util.*;
 
-public class Tetromino { // https://www.acmicpc.net/problem/14500
+public class Tetromino { // https://www.acmicpc.net/problem/14500, 브루트 포스 & 구현
     static int[][][] block = {
             {{0,1}, {0,2}, {0,3}},
             {{1,0}, {2,0}, {3,0}},
@@ -30,13 +28,15 @@ public class Tetromino { // https://www.acmicpc.net/problem/14500
     
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] temp = br.readLine().split(" ");
-        int n = Integer.parseInt(temp[0]);
-        int m = Integer.parseInt(temp[1]);
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
         int[][] a = new int[n][m];
-        for (int i=0; i<n; i++) {
-            a[i] = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < m; j++)
+                a[i][j] = Integer.parseInt(st.nextToken());
         }
 
         int ans = 0;
