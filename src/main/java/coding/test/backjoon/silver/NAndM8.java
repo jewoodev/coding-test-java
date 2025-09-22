@@ -1,43 +1,44 @@
 package coding.test.backjoon.silver;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.*;
 
 public class NAndM8 { // https://www.acmicpc.net/problem/15657, 브루트 포스 & 백트래킹
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static int[] a, c;
+    private static int[] seq, sub;
+    private static int cnt, len;
+    private static StringBuilder ans = new StringBuilder();
 
-    private static void go(int selected, int idx, int N, int M) throws IOException {
-        if (selected == M) {
-            for (int i: c) {
-                bw.write(i + " ");
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        cnt = Integer.parseInt(st.nextToken());
+        len = Integer.parseInt(st.nextToken());
+        sub = new int[len];
+        seq = new int[cnt];
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < cnt; i++) {
+            seq[i] = Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(seq);
+
+        go(0, 0);
+
+        System.out.print(ans);
+    }
+
+    private static void go(int curLen, int s) {
+        if (curLen == len) {
+            for (int i : sub) {
+                ans.append(i).append(" ");
             }
-            bw.write("\n");
+            ans.append("\n");
             return;
         }
 
-        if (idx > N) return;
-
-        for (int i = idx; i < N; i++) {
-            c[selected] = a[i];
-            go(selected + 1, i, N, M);
+        for (int i = s; i < cnt; i++) {
+            sub[curLen] = seq[i];
+            go(curLen + 1, i);
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new java.io.InputStreamReader(System.in));
-
-        int[] read = Arrays.stream(br.readLine().split(" "))
-                .mapToInt(Integer::parseInt).toArray();
-        int N = read[0];
-        int M = read[1];
-        a = new int[N];
-        c = new int[M];
-        a = Arrays.stream(br.readLine().split(" "))
-                .mapToInt(Integer::parseInt).sorted().toArray();
-
-        go(0, 0, N, M);
-
-        bw.flush();
     }
 }
