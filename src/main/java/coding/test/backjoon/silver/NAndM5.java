@@ -1,53 +1,50 @@
 package coding.test.backjoon.silver;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.*;
 
 public class NAndM5 { // https://www.acmicpc.net/problem/15654, 브루트 포스 & 백트래킹
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static int[] a;
-    static boolean[] b;
-    static int[] arr;
-
-    static void bruteForce(int cnt, int N, int M) throws IOException {
-        if (cnt == M) {
-            for (int i: arr) {
-                bw.write(i + " ");
-            }
-
-            bw.write("\n");
-            return;
-        }
-
-
-        for (int i = 0; i < N; i++) {
-            if (b[i]) continue;
-
-            b[i] = true;
-            arr[cnt] = a[i];
-            bruteForce(cnt + 1, N, M);
-            b[i] = false;
-        }
-    }
+    private static int[] seq, sub;
+    private static boolean[] selected;
+    private static int cnt, len;
+    private static StringBuilder ans = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int[] read = Arrays.stream(br.readLine().split(" "))
-                                        .mapToInt(Integer::parseInt).toArray();
-        int N = read[0];
-        int M = read[1];
-        a = new int[N];
-        b = new boolean[N];
-        arr = new int[M];
+        cnt = Integer.parseInt(st.nextToken());
+        len = Integer.parseInt(st.nextToken());
+        seq = new int[cnt];
+        sub = new int[len];
+        selected = new boolean[cnt];
 
-        for (int i = 0; i < 1; i++) {
-            a = Arrays.stream(br.readLine().split(" "))
-                                    .mapToInt(Integer::parseInt).sorted().toArray();
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < cnt; i++) {
+            seq[i] = Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(seq);
+
+        go(0);
+
+        System.out.print(ans);
+    }
+
+    private static void go(int curLen) {
+        if (curLen == len) {
+            for (int i : sub) {
+                ans.append(i).append(" ");
+            }
+            ans.append("\n");
+            return;
         }
 
-        bruteForce(0, N, M);
-
-        bw.flush();
+        for (int i = 0; i < cnt; i++) {
+            if (selected[i]) continue;
+            selected[i] = true;
+            sub[curLen] = seq[i];
+            go(curLen + 1);
+            selected[i] = false;
+        }
     }
 }
