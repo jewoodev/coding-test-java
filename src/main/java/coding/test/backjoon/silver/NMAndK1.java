@@ -1,61 +1,91 @@
 package coding.test.backjoon.silver;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.*;
 
 public class NMAndK1 { // https://www.acmicpc.net/problem/18290, 브루트 포스 & 백트래킹
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static int[] dx = {-1, 1, 0, 0};
-    static int[] dy = {0, 0, -1, 1};
-    static int[][] grid;
-    static boolean[][] c;
-    static int ans = Integer.MIN_VALUE, N, M, K;
+    private static boolean[][] selected;
+    private static int[][] board;
+    private static int ans, n, m, k;
+    // 상하좌우 방향 벡터
+    private static int[] dy = {-1, 1, 0, 0};
+    private static int[] dx = {0, 0, -1, 1};
 
-    static void go(int cnt, int sum, int px, int py) throws Exception {
-        if (cnt == K) {
-            if (sum > ans) ans = sum;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(st.nextToken());
+
+        selected = new boolean[n][m];
+        board = new int[n][m];
+        ans = Integer.MIN_VALUE; // 음수가 있을 수 있으므로 최솟값으로 초기화
+
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < m; j++) {
+                board[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        // 백트래킹 시작
+        backtrack(0, 0, 0, 0);
+
+        System.out.println(ans);
+    }
+
+    private static void backtrack(int cnt, int sum, int startY, int startX) {
+        // K개를 모두 선택한 경우
+        if (cnt == k) {
+            ans = Math.max(ans, sum);
             return;
         }
 
-        for (int x = px; x < N; x++) {
-            for (int y = (x == px ? py : 0); y < M; y++) {
-                if (c[x][y]) continue;
-                boolean flag = true;
-                for (int k = 0; k < 4; k++) {
-                    int nx = x + dx[k];
-                    int ny = y + dy[k];
-                    if (0 <= nx && nx < N && 0 <= ny && ny < M) {
-                        if (c[nx][ny]) flag = false;
-                    }
-                }
+        // 모든 칸을 순회하면서 선택 가능한 칸 찾기
+        for (int y = startY; y < n; y++) {
+            // 같은 행에서는 startX부터, 다른 행에서는 0부터 시작
+            int x = (y == startY) ? startX : 0;
 
-                if (flag) {
-                    c[x][y] = true;
-                    go(cnt + 1, sum + grid[x][y], x, y);
-                    c[x][y] = false;
+            for (; x < m; x++) {
+                if (canSelect(y, x)) {
+                    // 현재 칸 선택
+                    selected[y][x] = true;
+
+                    // 다음 칸부터 탐색 (중복 방지)
+                    int nextY = y;
+                    int nextX = x + 1;
+                    if (nextX == m) {
+                        nextY++;
+                        nextX = 0;
+                    }
+
+                    backtrack(cnt + 1, sum + board[y][x], nextY, nextX);
+
+                    // 선택 취소 (백트래킹)
+                    selected[y][x] = false;
                 }
             }
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new java.io.InputStreamReader(System.in));
+    // 현재 칸을 선택할 수 있는지 확인
+    private static boolean canSelect(int y, int x) {
+        if (selected[y][x]) return false;
 
-        int[] read = Arrays.stream(br.readLine().split(" "))
-                .mapToInt(Integer::parseInt).toArray();
-        N = read[0];
-        M = read[1];
-        K = read[2];
-        grid = new int[N][M];
-        c = new boolean[N][M];
-        for (int i = 0; i < N; i++) {
-            grid[i] = Arrays.stream(br.readLine().split(" "))
-                    .mapToInt(Integer::parseInt).toArray();
+        // 인접한 칸이 선택되어 있는지 확인
+        for (int i = 0; i < 4; i++) {
+            int ny = y + dy[i];
+            int nx = x + dx[i];
+
+            if (ny >= 0 && ny < n && nx >= 0 && nx < m) {
+                if (selected[ny][nx]) {
+                    return false;
+                }
+            }
         }
 
-        go(0, 0, 0, 0);
-
-        bw.write(ans + "\n");
-        bw.flush();
+        return true;
     }
 }
