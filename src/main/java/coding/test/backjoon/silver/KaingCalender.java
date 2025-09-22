@@ -1,33 +1,32 @@
 package coding.test.backjoon.silver;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.*;
 
-public class KaingCalender { // https://www.acmicpc.net/problem/6064
+public class KaingCalender { // https://www.acmicpc.net/problem/6064, 브루트 포스 & 중국인의 나머지 정리
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
 
         int T = Integer.parseInt(br.readLine());
         for (int i = 0; i < T; i++) {
-            int[] read = Arrays.stream(br.readLine().split(" "))
-                    .mapToInt(Integer::parseInt).toArray();
-            int M = read[0];
-            int N = read[1];
-            int x = read[2] - 1;
-            int y = read[3] - 1;
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int m = Integer.parseInt(st.nextToken());
+            int n = Integer.parseInt(st.nextToken());
+            int x = Integer.parseInt(st.nextToken()) - 1; // 중국인의 나머지 정리를
+            int y = Integer.parseInt(st.nextToken()) - 1; // 적용
 
             boolean flag = false;
-            for (int j = x; j < M * N; j += M) {
-                if (j % N == y) {
-                    bw.write(j + 1 + "\n");
+            for (int j = x; j < m * n; j += m) { // x, y 중에 하나는 고정하고 나머지 하나가 맞춰지는지 확인해봐도 됨
+                if (j % n == y) { // i를 x로 고정하고 j를 m씩 늘리면서 y와 일치하면 출력
+                    sb.append(j + 1).append("\n");
                     flag = true;
                     break;
                 }
             }
-            if (!flag) bw.write("-1\n");
+            if (!flag) sb.append("-1\n");
         }
 
-        bw.flush();
+        System.out.print(sb);
     }
 }
