@@ -20,27 +20,24 @@ public class PreviousPermutation { // https://www.acmicpc.net/problem/10973, 수
                 sb.append(arr[i]).append(" ");
             }
         } else {
-            System.out.println(-1);
+            sb.append(-1);
         }
+        System.out.println(sb);
     }
 
     // 이전 순열을 구하는 함수
     private static boolean prevPermutation(int[] arr) {
-        int n = arr.length;
-
         // 1. 뒤에서부터 탐색하면서 arr[i] > arr[i+1]인 가장 큰 i를 찾는다
-        int i = n - 2;
+        int i = arr.length - 2;
         while (i >= 0 && arr[i] <= arr[i + 1]) {
             i--;
         }
 
         // 만약 그러한 i가 없다면 가장 작은 순열(오름차순)이므로 -1 반환
-        if (i < 0) {
-            return false;
-        }
+        if (i < 0) return false;
 
         // 2. arr[i] > arr[j]인 가장 큰 j를 찾는다 (i < j)
-        int j = n - 1;
+        int j = arr.length - 1;
         while (arr[i] <= arr[j]) {
             j--;
         }
@@ -49,24 +46,24 @@ public class PreviousPermutation { // https://www.acmicpc.net/problem/10973, 수
         swap(arr, i, j);
 
         // 4. i+1부터 끝까지 내림차순으로 정렬 (reverse)
-        reverse(arr, i + 1, n - 1);
+        reverse(arr, i + 1, arr.length - 1);
 
         return true;
     }
 
     // 배열의 두 원소를 교환
     private static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
+        int tmp = arr[i];
         arr[i] = arr[j];
-        arr[j] = temp;
+        arr[j] = tmp;
     }
 
     // 배열의 특정 구간을 뒤집는다
-    private static void reverse(int[] arr, int start, int end) {
-        while (start < end) {
-            swap(arr, start, end);
-            start++;
-            end--;
+    private static void reverse(int[] arr, int i, int j) {
+        while(i < j) {
+            swap(arr, i, j);
+            i++;
+            j--;
         }
     }
 }
