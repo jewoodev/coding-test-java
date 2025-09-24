@@ -1,4 +1,4 @@
-package coding.test.programmers._2._17684;
+package coding.test.programmers.two.compression;
 
 import java.util.*;
 

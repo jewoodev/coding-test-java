@@ -1,4 +1,4 @@
-package coding.test.programmers._1._42889;
+package coding.test.programmers.one.failurerate;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package coding.test.programmers._2._17679;
+package coding.test.programmers.two.friends4block;
 
 import java.util.*;
 

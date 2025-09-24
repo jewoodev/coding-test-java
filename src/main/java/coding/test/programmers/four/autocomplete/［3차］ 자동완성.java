@@ -1,4 +1,4 @@
-package coding.test.programmers._4._17685;
+package coding.test.programmers.four.autocomplete;
 
 class Solution {
     class Trie {

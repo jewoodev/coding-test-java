@@ -1,4 +1,4 @@
-package coding.test.programmers._4._42894;
+package coding.test.programmers.four.blockgame;
 
 class Solution {
     private static int BLACK = 201;

@@ -1,4 +1,4 @@
-package coding.test.programmers._4._60060;
+package coding.test.programmers.four.lyricssearching;
 
 import java.util.*;
 

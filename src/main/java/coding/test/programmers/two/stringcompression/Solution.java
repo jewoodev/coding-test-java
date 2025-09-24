@@ -1,4 +1,4 @@
-package coding.test.programmers._2._60057;
+package coding.test.programmers.two.stringcompression;
 
 class Solution {
     public int solution(String s) {
