@@ -21,10 +21,7 @@ public class TSP2 { // https://www.acmicpc.net/problem/10971, 브루트포스 & 
             for (int j = 0; j < n; j++) {
                 cost[i][j] = Integer.parseInt(st.nextToken());
             }
-
-            plan[i] = i;
         }
-        ans = Integer.MAX_VALUE;
 
         go(0);
 
@@ -32,6 +29,9 @@ public class TSP2 { // https://www.acmicpc.net/problem/10971, 브루트포스 & 
     }
 
     private static void go(int curLen) {
+        if (plan[0] >= 1) return; // 다시 첫 도시로 돌아오기 때문에 비용 계산 식이 중복 호출됨
+        // 따라서 첫 도시를 고정시켜도 됨 첫 번째 도시는 도시가 몇 개이든 존재하기 때문에 이 도시를 고정
+
         if (curLen == n) {
             calculate();
             return;
