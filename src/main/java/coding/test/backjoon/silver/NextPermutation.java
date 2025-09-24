@@ -26,15 +26,17 @@ public class NextPermutation { // https://www.acmicpc.net/problem/10972, 수학 
     }
 
     private static boolean nextPermutation(int[] arr) {
-        // 1단계: 뒤에서부터 arr[i] < arr[i+1]인 가장 큰 i 찾기
+        // 1. 무엇(i)으로 시작하는 '가장 마지막 순열'인지 파악
         int i = arr.length - 2;
         while (i >= 0 && arr[i] >= arr[i + 1]) {
             i--;
         }
-        // 마지막 순열인 경우 (내림차순)
+
+        // '가장 마지막 순열'이 수열의 부분 수열에 없다면,
+        // 수열 자체가 '가장 마지막 순열' 이므로 -1 반환
         if (i < 0) return false;
 
-        // 2단계: arr[i]보다 큰 가장 작은 원소를 뒤에서부터 찾기
+        // 2단계: n-1 부터 역순으로, 'arr[i]보다 큰 수 중에 가장 작은 수'(j)를 찾기
         int j = arr.length - 1;
         while (arr[j] <= arr[i]) {
             j--;
@@ -43,7 +45,7 @@ public class NextPermutation { // https://www.acmicpc.net/problem/10972, 수학 
         // 3단계: arr[i]와 arr[j] 교체
         swap(arr, i, j);
 
-        // 4단계: i+1부터 끝까지 뒤집기 (오름차순 정렬)
+        // 4단계: i+1부터 끝까지 뒤집기
         reverse(arr, i + 1, arr.length - 1);
 
         return true;

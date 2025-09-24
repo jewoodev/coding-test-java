@@ -25,18 +25,18 @@ public class PreviousPermutation { // https://www.acmicpc.net/problem/10973, 수
         System.out.println(sb);
     }
 
-    // 이전 순열을 구하는 함수
     private static boolean prevPermutation(int[] arr) {
-        // 1. 뒤에서부터 탐색하면서 arr[i] > arr[i+1]인 가장 큰 i를 찾는다
+        // 1. 무엇(i)으로 시작하는 '가장 첫 순열'인지 파악
         int i = arr.length - 2;
         while (i >= 0 && arr[i] <= arr[i + 1]) {
             i--;
         }
 
-        // 만약 그러한 i가 없다면 가장 작은 순열(오름차순)이므로 -1 반환
+        // '가장 첫 순열'이 수열의 부분 수열에 없다면,
+        // 수열 자체가 '가장 첫 순열' 이므로 -1 반환
         if (i < 0) return false;
 
-        // 2. arr[i] > arr[j]인 가장 큰 j를 찾는다 (i < j)
+        // 2. n-1부터 역순으로, 'arr[i]보다 작은 수 중에 가장 큰 수'(j)를 찾기
         int j = arr.length - 1;
         while (arr[i] <= arr[j]) {
             j--;
@@ -45,7 +45,7 @@ public class PreviousPermutation { // https://www.acmicpc.net/problem/10973, 수
         // 3. arr[i]와 arr[j]를 교환
         swap(arr, i, j);
 
-        // 4. i+1부터 끝까지 내림차순으로 정렬 (reverse)
+        // 4. i+1부터 끝까지 뒤집기
         reverse(arr, i + 1, arr.length - 1);
 
         return true;
