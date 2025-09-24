@@ -1,55 +1,70 @@
 package coding.test.backjoon.silver;
 
 import java.io.*;
+import java.util.*;
 
-public class NextPermutation { // https://www.acmicpc.net/problem/10972, 순열
-    static boolean nextPermutation(int[] a) {
-        int i = a.length - 1;
-        while (i > 0 && a[i-1] >= a[i])
-            i -= 1;
+public class NextPermutation { // https://www.acmicpc.net/problem/10972, 수학 & 조합론
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        if (i <= 0) return false;
-
-        int j = a.length - 1;
-        while (a[i-1] >= a[j])
-            j -= 1;
-
-        int tmp = a[i-1];
-        a[i-1] = a[j];
-        a[j] = tmp;
-
-        j = a.length - 1;
-        while (i < j) {
-            tmp = a[i];
-            a[i] = a[j];
-            a[j] = tmp;
-            i += 1;
-            j -= 1;
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
+
+        StringBuilder sb = new StringBuilder();
+        if (nextPermutation(arr)) {
+            for (int i = 0; i < n; i++) {
+                sb.append(arr[i]).append(" ");
+            }
+        } else {
+            sb.append(-1);
+        }
+        System.out.println(sb);
+    }
+
+    public static boolean nextPermutation(int[] arr) {
+        int n = arr.length;
+
+        // 1단계: 뒤에서부터 arr[i] < arr[i+1]인 가장 큰 i 찾기
+        int i = n - 2;
+        while (i >= 0 && arr[i] >= arr[i + 1]) {
+            i--;
+        }
+
+        // 마지막 순열인 경우 (내림차순)
+        if (i < 0) {
+            return false;
+        }
+
+        // 2단계: arr[i]보다 큰 가장 작은 원소를 뒤에서부터 찾기
+        int j = n - 1;
+        while (arr[j] <= arr[i]) {
+            j--;
+        }
+
+        // 3단계: arr[i]와 arr[j] 교체
+        swap(arr, i, j);
+
+        // 4단계: i+1부터 끝까지 뒤집기 (오름차순 정렬)
+        reverse(arr, i + 1, n - 1);
 
         return true;
     }
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
 
-        int n = Integer.parseInt(br.readLine());
-        int[] a = new int[n];
-        String[] read = br.readLine().split(" ");
-        for (int i = 0; i < n; i++) {
-            a[i] = Integer.parseInt(read[i]);
+    private static void reverse(int[] arr, int start, int end) {
+        while (start < end) {
+            swap(arr, start, end);
+            start++;
+            end--;
         }
-
-        if (nextPermutation(a)) {
-            for (int i = 0; i < n; i++) {
-                bw.write((a[i]) + " ");
-            }
-            bw.write("\n");
-        } else {
-            bw.write("-1");
-        }
-
-        bw.flush();
     }
 }
