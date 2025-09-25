@@ -3,7 +3,7 @@ package coding.test.backjoon.silver;
 import java.io.*;
 import java.util.*;
 
-public class SumOfPartialSequences { // https://www.acmicpc.net/problem/1182, 브루트포스
+public class SumOfPartialSequences { // https://www.acmicpc.net/problem/1182, 브루트포스 | 비트마스크
     private static int ans, s;
 
     public static void main(String[] args) throws IOException {
@@ -19,21 +19,21 @@ public class SumOfPartialSequences { // https://www.acmicpc.net/problem/1182, �
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        go(0, 0, 0, arr);
+        go(arr);
 
         System.out.println(ans);
     }
 
-    private static void go(int idx, int curSum, int cnt, int[] arr) {
-        if (idx == arr.length) {
-            // 크기가 양수인 부분수열만 고려 (cnt > 0)
-            if (curSum == s && cnt > 0) ans++;
-            return;
+    private static void go(int[] arr) {
+        int sum = 0;
+        for (int i = 1; i < (1 << arr.length); i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if ((i & (1 << j)) != 0) {
+                    sum += arr[j];
+                }
+            }
+            if (sum == s) ans++;
+            sum = 0;
         }
-
-        // 현재 원소를 선택하는 경우
-        go(idx + 1, curSum + arr[idx], cnt + 1, arr);
-        // 현재 원소를 선택하지 않는 경우
-        go(idx + 1, curSum, cnt, arr);
     }
 }
