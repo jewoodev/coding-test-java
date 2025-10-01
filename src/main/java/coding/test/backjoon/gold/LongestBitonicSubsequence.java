@@ -1,7 +1,6 @@
-package coding.test.backjoon.silver;
+package coding.test.backjoon.gold;
 
 import java.io.*;
-import java.util.*;
 
 public class LongestBitonicSubsequence { // https://www.acmicpc.net/problem/11054, DP
     public static void main(String[] args) throws IOException {
