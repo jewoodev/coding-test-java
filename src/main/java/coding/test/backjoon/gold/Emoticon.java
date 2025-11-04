@@ -3,51 +3,67 @@ package coding.test.backjoon.gold;
 import java.util.*;
 
 public class Emoticon { // https://www.acmicpc.net/problem/14226, BFS
+    private static boolean[][] visited = new boolean[1001][1001];
+    private static int s;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        s = sc.nextInt();
 
-        int n = sc.nextInt();
-        int[][] d = new int[n+1][n+1];
-        for (int i = 0; i <= n; i++) {
-            Arrays.fill(d[i], -1);
-        }
+        bfs();
+    }
 
-        Deque<Integer> q = new ArrayDeque<>();
-        q.offer(1);
-        q.offer(0);
-        d[1][0] = 0;
+    private static void bfs() {
+        Deque<State> q = new ArrayDeque<>();
+
+        visited[1][0] = true;
+        q.offer(new State(1, 0, 0)); // 화면 1개, 클립보드 0개, 시간 0
 
         while (!q.isEmpty()) {
-            int s = q.poll(); // screen
-            int c = q.poll(); // clip board
+            State cur = q.poll();
 
-            if (d[s][s] == -1) {
-                d[s][s] = d[s][c] + 1;
-                q.offer(s);
-                q.offer(s);
+            if (cur.screen == s) {
+                System.out.println(cur.time);
+                break;
             }
 
-            if (s+c <= n && d[s+c][c] == -1) {
-                d[s+c][c] = d[s][c] + 1;
-                q.offer(s+c);
-                q.offer(c);
-            }
+            copyToClipboard(cur, q);
+            pasteToScreen(cur, q);
+            deleteFromScreen(cur, q);
+        }
+    }
 
-            if (s-1 >= 0 && d[s-1][c] == -1) {
-                d[s-1][c] = d[s][c] + 1;
-                q.offer(s-1);
-                q.offer(c);
+    private static void copyToClipboard(State cur, Deque<State> q) {
+        if (!visited[cur.screen][cur.screen]) {
+            visited[cur.screen][cur.screen] = true;
+            q.offer(new State(cur.screen, cur.screen, cur.time + 1));
+        }
+    }
+
+    private static void pasteToScreen(State cur, Deque<State> q) {
+        if (cur.clipboard > 0 && cur.screen + cur.clipboard <= 1000) {
+            if (!visited[cur.screen + cur.clipboard][cur.clipboard]) {
+                visited[cur.screen + cur.clipboard][cur.clipboard] = true;
+                q.offer(new State(cur.screen + cur.clipboard, cur.clipboard, cur.time + 1));
             }
         }
+    }
 
-        int ans = -1;
-        for (int i = 0; i <= n; i++) {
-            if (d[n][i] != -1) {
-                if (ans == -1 || ans > d[n][i])
-                    ans = d[n][i];
-            }
+    private static void deleteFromScreen(State cur, Deque<State> q) {
+        if (cur.screen > 0 && !visited[cur.screen - 1][cur.clipboard]) {
+            visited[cur.screen - 1][cur.clipboard] = true;
+            q.offer(new State(cur.screen - 1, cur.clipboard, cur.time + 1));
         }
+    }
 
-        System.out.println(ans);
+    private static class State {
+        int screen; // 화면의 이모티콘 개수
+        int clipboard; // 클립보드의 ..
+        int time;
+        private State(int screen, int clipboard, int time) {
+            this.screen = screen;
+            this.clipboard = clipboard;
+            this.time = time;
+        }
     }
 }
