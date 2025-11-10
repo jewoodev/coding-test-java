@@ -4,56 +4,109 @@ import java.io.*;
 import java.util.*;
 
 public class AlgoSpot { // https://www.acmicpc.net/problem/1261, BFS
-    private static int[] dx = {-1, 1, 0, 0};
-    private static int[] dy= {0, 0, -1, 1};
+    private static int[][] map;
+    private static int m, n;
+    private static boolean[][] visited;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int m = Integer.parseInt(st.nextToken());
-        int n = Integer.parseInt(st.nextToken());
-        int[][] cMap = new int[n][m]; // Count Map
-        boolean[][] visited = new boolean[n][m];
-        int[][] map = new int[n][m];
-        for (int i=0; i<n; i++) {
-            char[] read = br.readLine().toCharArray();
-            for (int j=0; j<m; j++)
-                map[i][j] = read[j] - '0';
-        }
-
-        Deque<Loc> q = new ArrayDeque<>();
-        visited[0][0] = true;
-        q.offer(new Loc(0, 0, 0));
-
-        while (!q.isEmpty()) {
-            Loc now = q.poll();
-            cMap[now.x][now.y] = now.cnt;
-
-            for (int i=0; i<4; i++) {
-                int nx = now.x + dx[i];
-                int ny = now.y + dy[i];
-
-                if (nx > -1 && ny > -1 && nx < n && ny < m && visited[nx][ny] == false) {
-                    visited[nx][ny] = true;
-
-                    if (map[nx][ny] == 1)
-                        q.addLast(new Loc(nx, ny, now.cnt + 1));
-                    else
-                        q.addFirst(new Loc(nx, ny, now.cnt));
-                }
-            }
-        }
-
-        System.out.println(cMap[n-1][m-1]);
+        makeMap(br);
+        inputMapInfo(br);
+        bfs();
     }
 
-    private static class Loc {
-        int x, y, cnt;
-        private Loc(int x, int y, int cnt) {
-            this.x = x;
+    private static void makeMap(BufferedReader br) throws IOException {
+        String[] readFirst = br.readLine().split(" ");
+        m = Integer.parseInt(readFirst[0]);
+        n = Integer.parseInt(readFirst[1]);
+        map = new int[n][m];
+        visited = new boolean[n][m];
+    }
+
+    private static void inputMapInfo(BufferedReader br) throws IOException {
+        for (int i = 0; i < n; i++) {
+            String read = br.readLine();
+            for (int j = 0; j < m; j++) {
+                map[i][j] = read.charAt(j) - '0';
+            }
+        }
+    }
+
+    private static void bfs() {
+        Deque<Operator> dq = new ArrayDeque<>();
+        visited[0][0] = true;
+        dq.offer(new Operator(0, 0, 0));
+
+        while (!dq.isEmpty()) {
+            Operator cur = dq.poll();
+
+            if (cur.x == m - 1 && cur.y == n - 1) {
+                System.out.print(cur.cost);
+                break;
+            }
+
+            goWest(cur, dq);
+            goEast(cur, dq);
+            goNorth(cur, dq);
+            goSouth(cur, dq);
+        }
+    }
+
+    private static void goWest(Operator cur, Deque<Operator> dq) {
+        int next = cur.x - 1;
+        if (next >= 0 && !visited[cur.y][next]) {
+            visited[cur.y][next] = true;
+            if (map[cur.y][next] == 1) {
+                dq.offerLast(new Operator(cur.y, next, cur.cost + 1));
+            } else {
+                dq.offerFirst(new Operator(cur.y, next, cur.cost));
+            }
+        }
+    }
+
+    private static void goEast(Operator cur, Deque<Operator> dq) {
+        int next = cur.x + 1;
+        if (next < m && !visited[cur.y][next]) {
+            visited[cur.y][next] = true;
+            if (map[cur.y][next] == 1) {
+                dq.offerLast(new Operator(cur.y, next, cur.cost + 1));
+            } else {
+                dq.offerFirst(new Operator(cur.y, next, cur.cost));
+            }
+        }
+    }
+
+    private static void goNorth(Operator cur, Deque<Operator> dq) {
+        int next = cur.y - 1;
+        if (next >= 0 && !visited[next][cur.x]) {
+            visited[next][cur.x] = true;
+            if (map[next][cur.x] == 1) {
+                dq.offerLast(new Operator(next, cur.x, cur.cost + 1));
+            } else {
+                dq.offerFirst(new Operator(next, cur.x, cur.cost));
+            }
+        }
+    }
+
+    private static void goSouth(Operator cur, Deque<Operator> dq) {
+        int next = cur.y + 1;
+        if (next < n && !visited[next][cur.x]) {
+            visited[next][cur.x] = true;
+            if (map[next][cur.x] == 1) {
+                dq.offerLast(new Operator(next, cur.x, cur.cost + 1));
+            } else {
+                dq.offerFirst(new Operator(next, cur.x, cur.cost));
+            }
+        }
+    }
+
+    private static class Operator {
+        int y, x, cost;
+        private Operator(int y, int x, int cost) {
             this.y = y;
-            this.cnt = cnt;
+            this.x = x;
+            this.cost = cost;
         }
     }
 }
