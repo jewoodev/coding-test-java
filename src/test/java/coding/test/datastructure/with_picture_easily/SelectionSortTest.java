@@ -17,7 +17,7 @@ class SelectionSortTest {
         sb.append("\n");
         log.info("정렬 전: " + sb);
 
-        BubbleSort.sort(arr);
+        SelectionSort.sort(arr);
         sb = new StringBuilder();
         for (int i = 0; i < 4; i++) {
             sb.append(arr[i]).append(" ");
