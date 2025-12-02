@@ -1,4 +1,4 @@
-package coding.test.datastructure.with_picture_easily;
+package coding.test.datastructure.with_picture_easily.sort;
 
 public class MergeSort {
     public static void sort(int[] arr, int leftIdx, int rightIdx) { // O(nlogn)

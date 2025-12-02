@@ -1,4 +1,4 @@
-package coding.test.datastructure.with_picture_easily;
+package coding.test.datastructure.with_picture_easily.sort;
 
 public class InsertionSort {
     public static void sort(int[] arr) { // O(n^2)

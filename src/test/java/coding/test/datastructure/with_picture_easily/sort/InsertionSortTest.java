@@ -1,4 +1,5 @@
-package coding.test.datastructure.with_picture_easily;
+package coding.test.datastructure.with_picture_easily.sort;
+
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -6,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-class MergeSortTest {
+class InsertionSortTest {
     @Test
     void test() {
         int[] arr = new int[] {10, 33, 4, 2, 3, 1, 6};
@@ -18,7 +19,7 @@ class MergeSortTest {
         sb.append("\n");
         log.info("정렬 전: " + sb);
 
-        MergeSort.sort(arr, 0, arr.length - 1);
+        InsertionSort.sort(arr);
 
         sb = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
