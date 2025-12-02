@@ -9,21 +9,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SelectionSortTest {
     @Test
     void test() {
-        int[] arr = new int[] {4, 2, 3, 1};
+        int[] arr = new int[] {10, 33, 4, 2, 3, 1, 6};
+
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i]).append(" ");
         }
         sb.append("\n");
         log.info("정렬 전: " + sb);
 
         SelectionSort.sort(arr);
+
         sb = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i]).append(" ");
         }
         sb.append("\n");
         log.info("정렬 후: " + sb);
+
         assertThat(arr).isSorted();
     }
 }

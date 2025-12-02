@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MergeSortTest {
     @Test
     void test() {
-        int[] arr = new int[] {4, 2, 3, 1};
+        int[] arr = new int[] {10, 33, 4, 2, 3, 1, 6};
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i]).append(" ");
         }
         sb.append("\n");
@@ -21,7 +21,7 @@ class MergeSortTest {
         MergeSort.sort(arr, 0, arr.length - 1);
 
         sb = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i]).append(" ");
         }
         sb.append("\n");

@@ -1,6 +1,5 @@
 package coding.test.datastructure.with_picture_easily;
 
-import coding.test.datastructure.with_picture_easily.PEHashTable;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
