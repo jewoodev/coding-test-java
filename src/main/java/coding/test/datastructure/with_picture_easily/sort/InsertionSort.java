@@ -1,7 +1,7 @@
 package coding.test.datastructure.with_picture_easily.sort;
 
 public class InsertionSort {
-    public static void sort(int[] arr) { // O(n^2)
+    public static void sort(int[] arr) { // O(N^2)
         for (int i = 1; i < arr.length; i++) {
             int insertingNum = arr[i];
             int j;

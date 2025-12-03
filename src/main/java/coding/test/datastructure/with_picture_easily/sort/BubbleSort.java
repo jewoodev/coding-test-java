@@ -1,7 +1,7 @@
 package coding.test.datastructure.with_picture_easily.sort;
 
 public class BubbleSort {
-    public static void sort(int[] arr) { // O(n^2)
+    public static void sort(int[] arr) { // O(N^2)
         int lastIdx = arr.length - 1;
         for (int i = 0; i < lastIdx; i++) {
             for (int j = 0; j < lastIdx - i; j++) {

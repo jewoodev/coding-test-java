@@ -1,7 +1,7 @@
 package coding.test.datastructure.with_picture_easily.sort;
 
 public class MergeSort {
-    public static void sort(int[] arr, int leftIdx, int rightIdx) { // O(nlogn)
+    public static void sort(int[] arr, int leftIdx, int rightIdx) { // O(NlogN)
         if (leftIdx < rightIdx) {
             int middleIdx = (leftIdx + rightIdx) / 2;
             sort(arr, leftIdx, middleIdx);

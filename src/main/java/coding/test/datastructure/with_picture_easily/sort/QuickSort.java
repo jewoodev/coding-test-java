@@ -1,7 +1,7 @@
 package coding.test.datastructure.with_picture_easily.sort;
 
 public class QuickSort {
-    public static void sort(int[] arr, int leftIdx, int rightIdx) { // O(n^2), 세타(nlogn)
+    public static void sort(int[] arr, int leftIdx, int rightIdx) { // O(n^2), 세타(NlogN)
         if (leftIdx <= rightIdx) {
             int pivot = divide(arr, leftIdx, rightIdx);
             sort(arr, leftIdx, pivot - 1);

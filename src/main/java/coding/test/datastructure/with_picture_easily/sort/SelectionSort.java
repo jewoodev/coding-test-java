@@ -1,7 +1,7 @@
 package coding.test.datastructure.with_picture_easily.sort;
 
 public class SelectionSort {
-    public static void sort(int[] arr) { // O(n^2)
+    public static void sort(int[] arr) { // O(N^2)
         for (int i = 0; i < arr.length - 1; i++) {
             int minValIdx = i;
             for (int j = i + 1; j < arr.length; j++) {
