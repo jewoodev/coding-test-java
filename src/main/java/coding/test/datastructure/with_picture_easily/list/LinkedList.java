@@ -1,4 +1,4 @@
-package coding.test.datastructure.with_picture_easily;
+package coding.test.datastructure.with_picture_easily.list;
 
 class LinkedList<D> implements List {
     private Node<D> head;
