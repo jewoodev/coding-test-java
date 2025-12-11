@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.*;
 
 public class RotateArray6 { // https://www.acmicpc.net/problem/20327, 구현
-    private static int size;
+    private static int ORIGIN_SIZE;
+    private static int[][] map;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -12,206 +13,89 @@ public class RotateArray6 { // https://www.acmicpc.net/problem/20327, 구현
 
         int N = Integer.parseInt(st.nextToken());
         int R = Integer.parseInt(st.nextToken());
-        size = (int) Math.pow(2, N);
 
-        int[][] arr = new int[size][size];
-        for (int i = 0; i < size; i++) {
+        ORIGIN_SIZE = 1 << N;
+
+        map = new int[ORIGIN_SIZE][ORIGIN_SIZE];
+
+        for (int i = 0; i < ORIGIN_SIZE; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < size; j++) {
-                arr[i][j] = Integer.parseInt(st.nextToken());
+            for (int j = 0; j < ORIGIN_SIZE; j++) {
+                map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        // R개의 연산 수행
         for (int i = 0; i < R; i++) {
             st = new StringTokenizer(br.readLine());
             int k = Integer.parseInt(st.nextToken());
             int l = Integer.parseInt(st.nextToken());
 
-            arr = operation(arr, k, l);
+            excute(k, l);
         }
+        br.close();
 
-        // 결과 출력
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                sb.append(arr[i][j]).append(" ");
+        for (int i = 0; i < ORIGIN_SIZE; i++) {
+            for (int j = 0; j < ORIGIN_SIZE; j++) {
+                sb.append(map[i][j]).append(' ');
             }
-            sb.append("\n");
+            sb.append('\n');
         }
         System.out.print(sb);
     }
 
-    private static int[][] operation(int[][] arr, int k, int l) {
-        int blockSize = (int) Math.pow(2, l);
+    private static void excute(int k, int l) {
+        int blockSize = 1 << l;
 
-        if (k <= 4) {
-            // 각 부분 배열 내부를 변환
-            return transformBlocks(arr, k, blockSize);
-        } else {
-            // 부분 배열을 블록으로 보고 전체 배열 변환
-            return transformArray(arr, k, blockSize);
-        }
-    }
+        int[][] tmp = new int[ORIGIN_SIZE][ORIGIN_SIZE];
 
-    // 연산 1-4: 각 부분 배열 내부 변환
-    private static int[][] transformBlocks(int[][] arr, int op, int blockSize) {
-        int[][] result = new int[size][size];
+        for (int startY = 0; startY < ORIGIN_SIZE; startY += blockSize) {
+            for (int startX = 0; startX < ORIGIN_SIZE; startX += blockSize) {
 
-        for (int i = 0; i < size; i += blockSize) {
-            for (int j = 0; j < size; j += blockSize) {
-                // 각 블록에 대해 연산 수행
-                int[][] block = extractBlock(arr, i, j, blockSize);
-                block = applyBlockOperation(block, op);
-                placeBlock(result, block, i, j);
-            }
-        }
+                for (int innerY = 0; innerY < blockSize; innerY++) {
+                    for (int innerX = 0; innerX < blockSize; innerX++) {
+                        int ny = startY, nx = startX;
 
-        return result;
-    }
+                        switch (k) {
+                            case 1:
+                                ny = startY + (blockSize - 1 - innerY);
+                                nx = startX + innerX;
+                                break;
+                            case 2:
+                                ny = startY + innerY;
+                                nx = startX + (blockSize - 1 - innerX);
+                                break;
+                            case 3:
+                                ny = startY + innerX;
+                                nx = startX + (blockSize - 1 - innerY);
+                                break;
+                            case 4:
+                                ny = startY + (blockSize - 1 - innerX);
+                                nx = startX + innerY;
+                                break;
+                            case 5:
+                                ny = (ORIGIN_SIZE - blockSize) - startY + innerY;
+                                nx = startX + innerX;
+                                break;
+                            case 6:
+                                ny = startY + innerY;
+                                nx = (ORIGIN_SIZE - blockSize) - startX + innerX;
+                                break;
+                            case 7:
+                                ny = startX + innerY;
+                                nx = (ORIGIN_SIZE - blockSize) - startY + innerX;
+                                break;
+                            case 8:
+                                ny = (ORIGIN_SIZE - blockSize) - startX + innerY;
+                                nx = startY + innerX;
+                        }
 
-    private static int[][] extractBlock(int[][] arr, int startI, int startJ, int blockSize) {
-        int[][] block = new int[blockSize][blockSize];
-        for (int i = 0; i < blockSize; i++) {
-            for (int j = 0; j < blockSize; j++) {
-                block[i][j] = arr[startI + i][startJ + j];
-            }
-        }
-        return block;
-    }
-
-    private static int[][] applyBlockOperation(int[][] block, int op) {
-        int n = block.length;
-        int[][] result = new int[n][n];
-
-        switch (op) {
-            case 1: // 상하 반전
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        result[i][j] = block[n - 1 - i][j];
-                    }
-                }
-                break;
-            case 2: // 좌우 반전
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        result[i][j] = block[i][n - 1 - j];
-                    }
-                }
-                break;
-            case 3: // 오른쪽 90도
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        result[i][j] = block[n - 1 - j][i];
-                    }
-                }
-                break;
-            case 4: // 왼쪽 90도
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        result[i][j] = block[j][n - 1 - i];
-                    }
-                }
-                break;
-        }
-
-        return result;
-    }
-
-    private static void placeBlock(int[][] arr, int[][] block, int startI, int startJ) {
-        int n = block.length;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                arr[startI + i][startJ + j] = block[i][j];
-            }
-        }
-    }
-
-    // 연산 5-8: 블록 단위로 배열 변환
-    private static int[][] transformArray(int[][] arr, int op, int blockSize) {
-        int blockCount = size / blockSize;
-        int[][][] blocks = new int[blockCount][blockCount][];
-
-        // 블록들을 추출
-        for (int i = 0; i < blockCount; i++) {
-            for (int j = 0; j < blockCount; j++) {
-                blocks[i][j] = flattenBlock(arr, i * blockSize, j * blockSize, blockSize);
-            }
-        }
-
-        // 블록 배열에 연산 적용
-        int[][][] transformed = applyArrayOperation(blocks, op);
-
-        // 다시 2D 배열로 조립
-        return assembleBlocks(transformed, blockSize);
-    }
-
-
-    private static int[] flattenBlock(int[][] arr, int startI, int startJ, int blockSize) {
-        int[] block = new int[blockSize * blockSize];
-        int idx = 0;
-        for (int i = 0; i < blockSize; i++) {
-            for (int j = 0; j < blockSize; j++) {
-                block[idx++] = arr[startI + i][startJ + j];
-            }
-        }
-        return block;
-    }
-
-    private static int[][][] applyArrayOperation(int[][][] blocks, int op) {
-        int n = blocks.length;
-        int[][][] result = new int[n][n][];
-
-        switch (op) {
-            case 5: // 상하 반전
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        result[i][j] = blocks[n - 1 - i][j];
-                    }
-                }
-                break;
-            case 6: // 좌우 반전
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        result[i][j] = blocks[i][n - 1 - j];
-                    }
-                }
-                break;
-            case 7: // 오른쪽 90도
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        result[i][j] = blocks[n - 1 - j][i];
-                    }
-                }
-                break;
-            case 8: // 왼쪽 90도
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        result[i][j] = blocks[j][n - 1 - i];
-                    }
-                }
-                break;
-        }
-
-        return result;
-    }
-
-    private static int[][] assembleBlocks(int[][][] blocks, int blockSize) {
-        int blockCount = blocks.length;
-        int[][] result = new int[size][size];
-
-        for (int i = 0; i < blockCount; i++) {
-            for (int j = 0; j < blockCount; j++) {
-                int[] block = blocks[i][j];
-                int idx = 0;
-                for (int di = 0; di < blockSize; di++) {
-                    for (int dj = 0; dj < blockSize; dj++) {
-                        result[i * blockSize + di][j * blockSize + dj] = block[idx++];
+                        tmp[ny][nx] = map[startY + innerY][startX + innerX];
                     }
                 }
             }
         }
 
-        return result;
+        map = tmp;
     }
 }
