@@ -4,146 +4,149 @@ import java.io.*;
 import java.util.*;
 
 public class RotateArray3 { // https://www.acmicpc.net/problem/16935, 구현
-    private static int[][] arr;
-    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
     public static void main(String[] args) throws IOException {
-        init();
-        calculate();
-        print();
-    }
-
-    private static void init() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
 
-        arr = new int[n][m];
-        for (int i = 0; i < n; i++) {
+        int N = Integer.parseInt(st.nextToken()), M = Integer.parseInt(st.nextToken()),
+                R = Integer.parseInt(st.nextToken());
+
+        int[][] arr = new int[N][M];
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < m; j++) {
+            for (int j = 0; j < M; j++) {
                 arr[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-    }
 
-    private static void calculate() throws IOException {
-        String[] read = br.readLine().split(" ");
-        for (int i = 0; i < read.length; i++) {
-            String o = read[i];
-            switch (o) {
-                case "1" -> one();
-                case "2" -> two();
-                case "3" -> three();
-                case "4" -> four();
-                case "5" -> five();
-                case "6" -> six();
-            }
-        }
-    }
+        st = new StringTokenizer(br.readLine());
+        for (int r = 0; r < R; r++) {
+            int op = Integer.parseInt(st.nextToken());
 
-    private static void one() {
-        int h = arr.length;
-        int w = arr[0].length;
-        int[][] temp = new int[h][w];
-        for (int i = 0; i < h; i++) {
-            for (int j = 0; j < w; j++) {
-                temp[i][j] = arr[h - 1 - i][j];
-            }
+            if (op < 3) {
+                arr = reverse(arr, op);
+            } else if (op < 5) {
+                arr = rotate(arr, op);
+            } else arr = groupRotate(arr, op);
         }
-        arr = temp;
-    }
+        br.close();
 
-    private static void two() {
-        int h = arr.length;
-        int w = arr[0].length;
-        int[][] temp = new int[h][w];
-        for (int i = 0; i < h; i++) {
-            for (int j = 0; j < w; j++) {
-                temp[i][j] = arr[i][w - 1 - j];
-            }
-        }
-        arr = temp;
-    }
-
-    private static void three() {
-        int h = arr.length;
-        int w = arr[0].length;
-        int[][] temp = new int[w][h];
-        for (int j = 0; j < w; j++) {
-            for (int i = h - 1; i >= 0; i--) {
-                temp[j][(h - 1) - i] = arr[i][j];
-            }
-        }
-        arr = temp;
-    }
-
-    private static void four() {
-        int h = arr.length;
-        int w = arr[0].length;
-        int[][] temp = new int[w][h];
-        for (int i = 0; i < h; i++) {
-            for (int j = w - 1; j >= 0; j--) {
-                temp[(w - 1) - j][i] = arr[i][j];
-            }
-        }
-        arr = temp;
-    }
-
-    private static void five() {
-        int h = arr.length;
-        int w = arr[0].length;
-        int[][] temp = new int[h][w];
-        for (int i = 0; i < h / 2; i++) {
-            for (int j = 0; j < w / 2; j++) {
-                temp[i][j + w / 2] = arr[i][j];
-            }
-            for (int j = w / 2; j < w; j++) {
-                temp[i + h / 2][j] = arr[i][j];
-            }
-        }
-        for (int i = h / 2; i < h; i++) {
-            for (int j = w / 2; j < w; j++) {
-                temp[i][j - w / 2] = arr[i][j];
-            }
-            for (int j = 0; j < w / 2; j++) {
-                temp[i - h / 2][j] = arr[i][j];
-            }
-        }
-        arr = temp;
-    }
-
-    private static void six() {
-        int h = arr.length;
-        int w = arr[0].length;
-        int[][] temp = new int[h][w];
-        for (int i = 0; i < h / 2; i++) {
-            for (int j = 0; j < w / 2; j++) {
-                temp[i + h / 2][j] = arr[i][j];
-            }
-            for (int j = w / 2; j < w; j++) {
-                temp[i][j - w / 2] = arr[i][j];
-            }
-        }
-        for (int i = h / 2; i < h; i++) {
-            for (int j = 0; j < w / 2; j++) {
-                temp[i][j + w / 2] = arr[i][j];
-            }
-            for (int j = w / 2; j < w; j++) {
-                temp[i - h / 2][j] = arr[i][j];
-            }
-        }
-        arr = temp;
-    }
-    
-    private static void print() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder ans = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
-                sb.append(arr[i][j]).append(" ");
+                ans.append(arr[i][j]).append(" ");
             }
-            sb.append("\n");
+            ans.append("\n");
         }
-        System.out.print(sb);
+        System.out.print(ans);
+    }
+
+    private static int[][] reverse(int[][] arr, int op) {
+        int N = arr.length;
+        int M = arr[0].length;
+        int[][] tempArr = new int[N][M];
+
+        switch (op) {
+            case 1 -> {
+                for (int i = 0; i < N; i++) {
+                    for (int j = 0; j < M; j++) {
+                        tempArr[i][j] = arr[N - 1 - i][j];
+                    }
+                }
+            }
+            case 2 -> {
+                for (int i = 0; i < N; i++) {
+                    for (int j = 0; j < M; j++) {
+                        tempArr[i][j] = arr[i][M - 1 - j];
+                    }
+                }
+            }
+        }
+
+        return tempArr;
+    }
+
+    private static int[][] rotate(int[][] arr, int op) {
+        int N = arr.length;
+        int M = arr[0].length;
+        int[][] tempArr = new int[M][N];
+
+        switch (op) {
+            case 3 -> {
+                for (int j = 0; j < M; j++) {
+                    for (int i = 0; i < N; i++) {
+                        tempArr[j][i] = arr[N - 1 - i][j];
+                    }
+                }
+            }
+            case 4 -> {
+                for (int j = 0; j < M; j++) {
+                    for (int i = 0; i < N; i++) {
+                        tempArr[j][i] = arr[i][M - 1 - j];
+                    }
+                }
+            }
+        }
+
+        return tempArr;
+    }
+
+    private static int[][] groupRotate(int[][] arr, int op) {
+        int N = arr.length;
+        int M = arr[0].length;
+        int[][] tempArr = new int[N][M];
+
+        switch (op) {
+            case 5 -> five(arr, N, M, tempArr);
+            case 6 -> six(arr, N, M, tempArr);
+        }
+
+        return tempArr;
+    }
+
+    private static void five(int[][] arr, int N, int M, int[][] tempArr) {
+        for (int i = 0; i < N / 2; i++) {
+            for (int j = 0; j < M / 2; j++) {
+                tempArr[i][j] = arr[i + N / 2][j];
+            }
+        }
+        for (int i = 0; i < N / 2; i++) {
+            for (int j = M / 2; j < M; j++) {
+                tempArr[i][j] = arr[i][j - M / 2];
+            }
+        }
+        for (int i = N / 2; i < N; i++) {
+            for (int j = 0; j < M / 2; j++) {
+                tempArr[i][j] = arr[i][j + M / 2];
+            }
+        }
+        for (int i = N / 2; i < N; i++) {
+            for (int j = M / 2; j < M; j++) {
+                tempArr[i][j] = arr[i - N / 2][j];
+            }
+        }
+    }
+
+    private static void six(int[][] arr, int N, int M, int[][] tempArr) {
+        for (int i = 0; i < N / 2; i++) {
+            for (int j = 0; j < M / 2; j++) {
+                tempArr[i][j] = arr[i][j + M / 2];
+            }
+        }
+        for (int i = 0; i < N / 2; i++) {
+            for (int j = M / 2; j < M; j++) {
+                tempArr[i][j] = arr[i + N / 2][j];
+            }
+        }
+        for (int i = N / 2; i < N; i++) {
+            for (int j = 0; j < M / 2; j++) {
+                tempArr[i][j] = arr[i - N / 2][j];
+            }
+        }
+        for (int i = N / 2; i < N; i++) {
+            for (int j = M / 2; j < M; j++) {
+                tempArr[i][j] = arr[i][j - M / 2];
+            }
+        }
     }
 }
