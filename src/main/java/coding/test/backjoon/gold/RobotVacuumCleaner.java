@@ -3,7 +3,7 @@ package coding.test.backjoon.gold;
 import java.io.*;
 import java.util.*;
 
-public class RobotVacuumCleaner {
+public class RobotVacuumCleaner { // https://www.acmicpc.net/problem/14503, 구현 & 시뮬레이션
     private static int[] dr = {-1, 0, 1, 0}; // 북, 동, 남, 서
     private static int[] dc = {0, 1, 0, -1};
     private static int[][] map;
