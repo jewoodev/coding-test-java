@@ -3,34 +3,36 @@ package coding.test.besuccessfulapplicants.array;
 import java.util.*;
 
 class LengthOfVisit { // https://school.programmers.co.kr/learn/courses/30/lessons/49994
-    private static final HashMap<Character, int[]> location = new HashMap<>();
+    private static Map<Character, int[]> movingDirector = new HashMap<>();
+    private static Set<String> visited = new HashSet<>();
 
     public int solution(String dirs) {
-        initLocation();
-        int x = 5, y = 5;
-        HashSet<String> answer = new HashSet<>();
+        initDirector();
+        int x = 0, y = 0;
         for (int i = 0; i < dirs.length(); i++) {
-            int[] offset = location.get(dirs.charAt(i));
-            int nx = x + offset[0];
-            int ny = y + offset[1];
-            if (!isValidMove(nx, ny)) continue;
-            answer.add(x + " " + y + " " + nx + " " + ny);
-            answer.add(nx + " " + ny + " " + x + " " + y);
-            x =  nx;
-            y = ny;
+            var curIndicator = dirs.charAt(i);
+            var curDirection = movingDirector.get(curIndicator);
+            int nx = x + curDirection[0];
+            int ny = y + curDirection[1];
+
+            if (isValidMoving(nx, ny)) {
+                visited.add(x + " " + y + " " + nx + " " + ny);
+                visited.add(nx + " " + ny + " " + x + " " + y);
+                x = nx;
+                y = ny;
+            }
         }
-
-        return answer.size() / 2;
+        return visited.size() / 2;
     }
 
-    private static void initLocation() {
-        location.put('U', new int[]{0,1});
-        location.put('D', new int[]{0,-1});
-        location.put('L', new int[]{-1,0});
-        location.put('R', new int[]{1,0});
+    private static void initDirector() {
+        movingDirector.put('U', new int[]{1,0});
+        movingDirector.put('D', new int[]{-1,0});
+        movingDirector.put('L', new int[]{0,-1});
+        movingDirector.put('R', new int[]{0,1});
     }
 
-    private static boolean isValidMove(int nx, int ny) {
-        return nx >= 0 && nx <= 10 && ny >= 0 && ny <= 10;
+    private static boolean isValidMoving(int x, int y) {
+        return x >= -5 && x <= 5 && y >= -5 && y <= 5;
     }
 }
