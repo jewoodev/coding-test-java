@@ -4,7 +4,7 @@ import java.util.*;
 
 class RotateParentheses {
     public int solution(String s) {
-        Deque<Character> dq = new ArrayDeque<>();
+        var dq = new ArrayDeque<Character>();
         for (var c : s.toCharArray()) {
             dq.offerLast(c);
         }
@@ -21,33 +21,22 @@ class RotateParentheses {
     }
 
     private boolean isCorrect(Deque<Character> origin) {
-        var dq =  new ArrayDeque<>(origin);
-        Deque<Character> stack = new ArrayDeque<>();
+        var stack = new ArrayDeque<Character>();
 
-        while (!dq.isEmpty()) {
-            var cur = dq.pollFirst();
-            if (cur == '(' || cur == '{' || cur =='[') {
+        for (var cur : origin) {
+            if (cur == '(' || cur == '{' || cur == '[') {
                 stack.push(cur);
             }
             else {
                 if (stack.isEmpty()) return false;
 
-                char before = stack.peek();
-
-                switch (cur) {
-                    case ')' -> {
-                        if (before != '(') return false;
-                    }
-                    case '}' -> {
-                        if (before != '{') return false;
-                    }
-                    case ']' -> {
-                        if (before != '[') return false;
-                    }
-                }
-                stack.pop();
+                var before = stack.pop();
+                if (cur == ']' && before != '[') return false;
+                if (cur == ')' && before != '(') return false;
+                if (cur == '}' && before != '{') return false;
             }
         }
-        return true;
+
+        return stack.isEmpty();
     }
 }
