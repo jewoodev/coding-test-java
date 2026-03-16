@@ -4,27 +4,32 @@ import java.util.ArrayDeque;
 
 class CraneClawMachineGame { // https://school.programmers.co.kr/learn/courses/30/lessons/64061
     public int solution(int[][] board, int[] moves) {
-        int answer = 0;
-//        int[] height = new int[board[0].length];
-        var dq = new ArrayDeque<Integer>();
+        ArrayDeque<Integer>[] lanes = new ArrayDeque[board.length];
+        for (int i = 0; i < lanes.length; i++) {
+            lanes[i] = new ArrayDeque<>();
+        }
 
-        for (int i = 0; i < moves.length; i++) {
-//            if (height[i] == board[0].length) continue;
-            int[] cur = board[moves[i] - 1];
-            int target = 0;
-            for (int j = 0; j < cur.length; j++) {
-                if (cur[j] != 0) {
-                    target = cur[j];
-                    cur[j] = 0;
-                    break;
+        for (int i = board.length - 1; i >= 0; i--) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] > 0) {
+                    lanes[j].offerLast(board[i][j]);
                 }
             }
+        }
 
-            if (!dq.isEmpty() && dq.peekLast() == target) {
-                dq.pollLast();
-                answer++;
-            } else if (target != 0) {
-                dq.offerLast(target);
+        var bucket = new ArrayDeque<Integer>();
+        int answer = 0;
+
+        for (int move : moves) {
+            if (!lanes[move - 1].isEmpty()) {
+                int doll = lanes[move - 1].pollLast();
+                if (!bucket.isEmpty() && bucket.peekLast() == doll) {
+                    bucket.pollLast();
+                    answer += 2;
+                }
+                else  {
+                    bucket.offerLast(doll);
+                }
             }
         }
 
