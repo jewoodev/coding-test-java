@@ -4,28 +4,25 @@ import java.util.*;
 
 class TwoSum { // https://leetcode.com/problems/two-sum/description/
     public int[] twoSum(int[] nums, int target) {
-        boolean[] check = new boolean[nums.length];
-        doSum(nums, target, 0, 0, check);
-
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < check.length; i++) {
-            if (check[i]) list.add(i);
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            var list = map.getOrDefault(nums[i], new ArrayList<>());
+            list.add(i);
+            map.put(nums[i], list);
         }
-        return list.stream().mapToInt(Integer::intValue).toArray();
-    }
-
-    private boolean doSum(int[] nums, int target, int sum, int depth, boolean[] check) {
-        if (depth > 2) return false;
-        else if (sum == target && depth == 2) return true;
 
         for (int i = 0; i < nums.length; i++) {
-            if (check[i]) continue;
-            check[i] = true;
-            sum += nums[i];
-            if (doSum(nums, target, sum, depth + 1, check)) return true;
-            check[i] = false;
-            sum -= nums[i];
+            int key = target - nums[i];
+            if (map.containsKey(key)) {
+                var list = map.get(key);
+
+                if (nums[i] == key && list.size() > 1) return new int[]{i, map.get(key).get(1)};
+                else if (nums[i] == key && list.size() == 1) continue;
+
+                return new int[]{i, map.get(key).get(0)};
+            }
         }
-        return false;
+
+        return null;
     }
 }

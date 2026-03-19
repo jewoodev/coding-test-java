@@ -8,10 +8,11 @@ class TwoSumTest {
     @Test
     void test() {
         int[][] nums = {
+                {3,2,4},
                 {0,4,3,0}
         };
-        int[] target = {0};
-        int[][] output = {{0,3}};
+        int[] target = {6, 0};
+        int[][] output = {{1,2},{0,3}};
 
         var sut =  new TwoSum();
         for (int i = 0; i < nums.length; i++) {
