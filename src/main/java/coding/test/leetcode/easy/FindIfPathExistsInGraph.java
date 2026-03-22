@@ -1,10 +1,8 @@
-package coding.test.leetcode.easy;
-
 import java.util.*;
 
-class FindIfPathExistsInGraph { // https://leetcode.com/problems/find-if-path-exists-in-graph/description/
+class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        boolean[][] visited = new boolean[n][n];
+        boolean[] visited = new boolean[n];
         var graph = new HashMap<Integer, List<Integer>>();
         for (int i = 0; i < n; i++) {
             var list = new ArrayList<Integer>();
@@ -24,18 +22,23 @@ class FindIfPathExistsInGraph { // https://leetcode.com/problems/find-if-path-ex
         return go(graph, source, destination, visited);
     }
 
-    private boolean go(Map<Integer, List<Integer>> graph, int start, int dest, boolean[][] visited) {
-        if (start == dest) return true;
+    private boolean go(Map<Integer, List<Integer>> graph, int start, int dest, boolean[] visited) {
+        Deque<Integer> q = new ArrayDeque<>();
+        q.offer(start);
 
-        var list = graph.get(start);
-        for (int i : list) {
-            if (visited[start][i]) continue;
-            visited[start][i] = true;
-            visited[i][start] = true;
-            if (go(graph, i, dest, visited)) return true;
-            visited[i][start] = false;
-            visited[i][start] = false;
+        while (!q.isEmpty()) {
+            int cur = q.poll();
+            if (cur == dest) return true;
+
+            var list = graph.get(cur);
+            for (int i : list) {
+                if (visited[i]) continue;
+
+                visited[i] = true;
+                q.offer(i);
+            }
         }
+
         return false;
     }
 }
