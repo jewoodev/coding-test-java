@@ -1,4 +1,4 @@
-package coding.test.leetcode;
+package coding.test.leetcode.easy;
 
 class ClimbingStairs {
     public int climbStairs(int n) {
