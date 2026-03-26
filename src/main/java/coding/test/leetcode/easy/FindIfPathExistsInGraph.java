@@ -1,6 +1,8 @@
+package coding.test.leetcode.easy;
+
 import java.util.*;
 
-class Solution {
+class FindIfPathExistsInGraph {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
         boolean[] visited = new boolean[n];
         var graph = new HashMap<Integer, List<Integer>>();
