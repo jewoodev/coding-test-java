@@ -8,16 +8,17 @@ class ValidParentheses {
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (c == '(' || c == '{' || c == '[') {
-                dq.offerLast(c);
+            if (c == '(') {
+                dq.offerLast(')');
+            } else if (c == '{') {
+                dq.offerLast('}');
+            } else if (c == '[') {
+                dq.offerLast(']');
             } else {
                 if (dq.isEmpty()) return false;
 
                 var before = dq.pollLast();
-                if (c == ')' && before != '(' ||
-                    c == '}' && before != '{' ||
-                    c == ']' && before != '['
-                ) {
+                if (before != c) {
                     return false;
                 }
             }
