@@ -9,12 +9,11 @@ class MinCostToConnectAllPointsTest {
     void test() {
         int[][] inputs = {
                 {0, 0},
-                {2, 2},
-                {3, 10},
-                {5, 2},
-                {7, 0}
+                {1, 1},
+                {1, 0},
+                {-1, 1}
         };
-        int output = 20;
+        int output = 4;
 
         var sut = new MinCostToConnectAllPoints();
         assertThat(sut.minCostConnectPoints(inputs)).isEqualTo(output);

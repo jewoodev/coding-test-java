@@ -1,51 +1,54 @@
 package coding.test.leetcode.medium;
 
-import java.util.*;
+import java.util.PriorityQueue;
 
 class MinCostToConnectAllPoints { // https://leetcode.com/problems/min-cost-to-connect-all-points/description/
     public int minCostConnectPoints(int[][] points) {
-        int[] parent = new int[points.length];
-        for (int i = 0; i < points.length; i++) {
-            parent[i] = i;
+        var pq = new PriorityQueue<Edge>((e1, e2) -> e1.cost - e2.cost);
+        boolean[] visited = new boolean[points.length];
+        visited[0] = true;
+
+        for (int i = 1; i < points.length; i++) {
+            pq.offer(
+                    new Edge(
+                            i,
+                            Math.abs(points[0][0] - points[i][0]) + Math.abs(points[0][1] - points[i][1])
+                    )
+            );
         }
 
-        var q = new PriorityQueue<Edge>((e1, e2) -> e1.cost - e2.cost);
-        for (int i = 0; i < points.length; i++) {
-            for (int j = i + 1; j < points.length; j++) {
-                int cost = Math.abs(points[i][0] - points[j][0]) +  Math.abs(points[i][1] - points[j][1]);
-                q.offer(new Edge(i, j, cost));
+        int answer = 0;
+        int cnt = 0;
+        int fullCnt = points.length - 1;
+        while (cnt != fullCnt) {
+            var edge = pq.poll();
+            if (visited[edge.to]) continue;
+
+            answer += edge.cost;
+            cnt++;
+            visited[edge.to] = true;
+
+            for (int i = 1; i < points.length; i++) {
+                if (!visited[i]) {
+                    pq.offer(
+                            new Edge(
+                                    i,
+                                    Math.abs(points[edge.to][0] - points[i][0]) + Math.abs(points[edge.to][1] - points[i][1])
+                            )
+                    );
+                }
             }
         }
 
-        int cost = 0;
-        while (!q.isEmpty()) {
-            var cur = q.poll();
-            if (find(parent, cur.from) != find(parent, cur.to)) {
-                union(parent, cur.from, cur.to);
-                cost += cur.cost;
-            }
-        }
-
-        return cost;
+        return answer;
     }
 
-    private int find(int[] parent, int x) {
-        while (x != parent[x]) {
-            x = parent[x];
-        }
-        return x;
-    }
-
-    private void union(int[] parent, int x, int y) {
-        parent[find(parent, x)] = find(parent, y);
-    }
-
-    private static class Edge {
-        int from, to, cost;
-        private Edge(int from, int to, int cost) {
-            this.from = from;
+    private class Edge {
+        int to, cost;
+        private Edge(int to, int cost) {
             this.to = to;
             this.cost = cost;
         }
     }
 }
+
