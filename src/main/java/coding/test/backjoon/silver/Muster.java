@@ -3,53 +3,35 @@ package coding.test.backjoon.silver;
 import java.io.*;
 import java.util.*;
 
-public class Muster { // https://www.acmicpc.net/problem/11723, 비트마스킹
-    private static int result = 0;
-    private static StringBuilder ans = new StringBuilder();
-
+class Muster {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        var br = new BufferedReader(new InputStreamReader(System.in));
+        var sb = new StringBuilder();
+        int bits = 0;
 
-        int m = Integer.parseInt(br.readLine());
-        for (int i = 0; i < m; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
+        int x = Integer.parseInt(br.readLine());
 
-            String operator = st.nextToken();
-            if (operator.equals("all")) {
-                result = (1 << 21) - 1;
-                continue;
-            } else if (operator.equals("empty")) {
-                result = 0;
-                continue;
-            }
+        for (int i = 0; i < x; i++) {
+            String[] line = br.readLine().split(" ");
+            var cmd = line[0];
+            int num = line.length == 2 ? Integer.parseInt(line[1]) : 0;
 
-            int operand = Integer.parseInt(st.nextToken());
-
-            switch (operator) {
-                case "add" -> add(operand);
-                case "check" -> check(operand);
-                case "remove" -> remove(operand);
-                case "toggle" -> toggle(operand);
+            if (cmd.equals("add")) {
+                bits |= (1 << num);
+            } else if (cmd.equals("remove")) {
+                bits &= ~(1 << num);
+            } else if (cmd.equals("check")) {
+                if ((bits & (1 << num)) != 0) {
+                    sb.append("1\n");
+                } else sb.append("0\n");
+            } else if (cmd.equals("toggle")) {
+                bits ^= (1 << num);
+            } else if (cmd.equals("all")) {
+                bits = (1 << 21) - 1;
+            } else {
+                bits = 0;
             }
         }
-
-        System.out.println(ans);
-    }
-
-    private static void add(int num) {
-        result |= (1 << num);
-    }
-
-    private static void check(int num) {
-        ans.append((result & (1 << num)) != 0 ? 1 : 0)
-                .append("\n");
-    }
-
-    private static void remove(int num) {
-        result &= ~(1 << num);
-    }
-
-    private static void toggle(int num) {
-        result ^= (1 << num);
+        System.out.print(sb);
     }
 }
