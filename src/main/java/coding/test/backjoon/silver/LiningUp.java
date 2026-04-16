@@ -15,23 +15,26 @@ class LiningUp {
             st = new StringTokenizer(br.readLine());
             st.nextToken();
             list = new ArrayList<>();
-            int last = 1;
             list.add(Integer.parseInt(st.nextToken()));
 
             int answer = 0;
             for (; st.countTokens() > 0;) {
                 int cur = Integer.parseInt(st.nextToken());
-                if (list.get(last - 1) > cur) {
-                    answer += list.size();
-                    list.add(0, cur);
-                } else {
-                    list.add(last++, cur);
+                int idx = list.size() - 1;
+                var flag = false;
+                while (idx >= 0 && list.get(idx) > cur) {
+                    flag = true;
+                    idx--;
                 }
+                if (flag) {
+                    answer += list.size() - ++idx;
+                    list.add(idx, cur);
+                } else list.add(cur);
             }
 
             sb.append(i).append(" ").append(answer).append("\n");
         }
 
-        System.out.println(sb);
+        System.out.print(sb);
     }
 }
