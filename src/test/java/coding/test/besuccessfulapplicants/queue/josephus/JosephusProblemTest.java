@@ -1,4 +1,4 @@
-package coding.test.besuccessfulapplicants.queue;
+package coding.test.besuccessfulapplicants.queue.josephus;
 
 import org.junit.jupiter.api.Test;
 
